@@ -5,13 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SUpost Marketplace</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; padding: 0; }
-        .container { max-width: 800px; margin: auto; }
-        .post { padding: 10px; border: 1px solid #ddd; margin-bottom: 10px; cursor: pointer; }
-        .post-title { font-weight: bold; }
-        .post-detail { display: none; }
-        .back-button { display: none; margin-bottom: 20px; cursor: pointer; color: blue; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #ff7e5f;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        .post {
+            padding: 15px;
+            border-radius: 8px;
+            background: #fff;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .post:hover {
+            background: #ff7e5f;
+            color: white;
+        }
+        .post-title {
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .post-detail {
+            display: none;
+            text-align: left;
+        }
+        .back-button {
+            display: none;
+            margin-bottom: 20px;
+            cursor: pointer;
+            color: #ff7e5f;
+            font-weight: bold;
+            text-decoration: underline;
+        }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
