@@ -1,112 +1,296 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SUpost Marketplace</title>
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(to right, #6a11cb, #2575fc);
-            margin: 0;
-            padding: 0;
-            color: #333;
-        }
-        .container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-        h1 {
-            color: #6a11cb;
-            font-size: 28px;
-            margin-bottom: 20px;
-        }
-        .post {
-            padding: 15px;
-            border-radius: 8px;
-            background: #f0f8ff;
-            border: 1px solid #ddd;
-            margin-bottom: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .post:hover {
-            background: #6a11cb;
-            color: white;
-        }
-        .post-title {
-            font-weight: bold;
-            font-size: 18px;
-        }
-        .post-detail {
-            display: none;
-            text-align: left;
-        }
-        .back-button {
-            display: none;
-            margin-bottom: 20px;
-            cursor: pointer;
-            color: #6a11cb;
-            font-weight: bold;
-            text-decoration: underline;
-        }
-    </style>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SUpost Marketplace</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    /* App Container */
+    .app-container {
+      width: 100%;
+      max-width: 1200px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    /* Header Styling */
+    header {
+      background: #8c1515; /* Stanford Cardinal Red */
+      padding: 20px;
+      text-align: center;
+      color: #fff;
+    }
+    header h1 {
+      font-size: 2rem;
+      margin-bottom: 5px;
+    }
+    header p {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+    /* Search Bar */
+    .search-bar {
+      padding: 20px;
+      text-align: center;
+      background: #f7f7f7;
+    }
+    .search-bar input {
+      width: 80%;
+      max-width: 500px;
+      padding: 10px 15px;
+      border: 2px solid #ddd;
+      border-radius: 30px;
+      font-size: 1rem;
+      outline: none;
+      transition: border 0.3s;
+    }
+    .search-bar input:focus {
+      border-color: #8c1515;
+    }
+    /* Posts Grid */
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .post-card {
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      padding: 20px;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .post-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    }
+    .post-card h2 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: #8c1515;
+    }
+    .post-card p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+    /* Modal Styles */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease;
+      z-index: 100;
+    }
+    .modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .modal-content {
+      background: #fff;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 600px;
+      padding: 30px;
+      position: relative;
+      animation: fadeInUp 0.5s;
+    }
+    @keyframes fadeInUp {
+      from {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 1.5rem;
+      color: #888;
+      cursor: pointer;
+    }
+    .modal-content h2 {
+      margin-bottom: 15px;
+      color: #8c1515;
+    }
+    .modal-content p {
+      margin-bottom: 10px;
+      color: #555;
+    }
+    .modal-content .price {
+      font-weight: 600;
+      margin-top: 15px;
+      color: #000;
+    }
+    /* Responsive Adjustments */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.5rem;
+      }
+      .search-bar input {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>SUpost Marketplace</h1>
-        <div id="post-list">
-            <div class="post" onclick="showPost(1)">
-                <p class="post-title">Bike for Sale - $100</p>
-                <p>Great condition, used for one year.</p>
-            </div>
-            <div class="post" onclick="showPost(2)">
-                <p class="post-title">Roommate Wanted - $800/mo</p>
-                <p>Looking for a roommate near Stanford campus.</p>
-            </div>
-            <div class="post" onclick="showPost(3)">
-                <p class="post-title">CS Textbook - $30</p>
-                <p>Intro to Algorithms, great condition.</p>
-            </div>
-        </div>
-
-        <div id="post-detail" class="post-detail">
-            <p class="back-button" onclick="goBack()">&larr; Back to posts</p>
-            <h2 id="detail-title"></h2>
-            <p id="detail-description"></p>
-            <p id="detail-price"></p>
-        </div>
+  <div class="app-container">
+    <!-- Header -->
+    <header>
+      <h1>SUpost</h1>
+      <p>The Stanford Student Marketplace</p>
+    </header>
+    <!-- Search Bar -->
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search posts..." />
     </div>
+    <!-- Posts Grid -->
+    <div class="posts-grid" id="postsGrid">
+      <!-- Post cards will be injected here by JavaScript -->
+    </div>
+  </div>
 
-    <script>
-        const posts = [
-            { id: 1, title: "Bike for Sale - $100", description: "Great condition, used for one year. Pickup on campus.", price: "$100" },
-            { id: 2, title: "Roommate Wanted - $800/mo", description: "Looking for a roommate near Stanford campus. Spacious room, great amenities.", price: "$800/mo" },
-            { id: 3, title: "CS Textbook - $30", description: "Intro to Algorithms, great condition. No highlights or marks.", price: "$30" }
-        ];
+  <!-- Modal for Post Details -->
+  <div class="modal" id="postModal">
+    <div class="modal-content">
+      <span class="close-modal" id="closeModal">&times;</span>
+      <h2 id="modalTitle"></h2>
+      <p id="modalDescription"></p>
+      <p class="price" id="modalPrice"></p>
+    </div>
+  </div>
 
-        function showPost(id) {
-            const post = posts.find(p => p.id === id);
-            document.getElementById('detail-title').innerText = post.title;
-            document.getElementById('detail-description').innerText = post.description;
-            document.getElementById('detail-price').innerText = `Price: ${post.price}`;
-            
-            document.getElementById('post-list').style.display = 'none';
-            document.getElementById('post-detail').style.display = 'block';
-            document.querySelector('.back-button').style.display = 'block';
-        }
+  <script>
+    // Sample posts data
+    const posts = [
+      {
+        id: 1,
+        title: "Bike for Sale",
+        description: "Great condition, used for one year. Pickup on campus.",
+        price: "$100"
+      },
+      {
+        id: 2,
+        title: "Roommate Wanted",
+        description: "Looking for a roommate near Stanford campus. Spacious room with great amenities.",
+        price: "$800/mo"
+      },
+      {
+        id: 3,
+        title: "CS Textbook",
+        description: "Intro to Algorithms in excellent condition. No highlights or marks.",
+        price: "$30"
+      },
+      {
+        id: 4,
+        title: "Dorm Furniture",
+        description: "Selling a set of dorm furniture including a bed, desk, and chair.",
+        price: "$150"
+      },
+      {
+        id: 5,
+        title: "Guitar Lessons",
+        description: "Offering beginner guitar lessons at affordable rates. Flexible schedule.",
+        price: "Starting at $20/hr"
+      }
+    ];
 
-        function goBack() {
-            document.getElementById('post-list').style.display = 'block';
-            document.getElementById('post-detail').style.display = 'none';
-            document.querySelector('.back-button').style.display = 'none';
-        }
-    </script>
+    // Get DOM elements
+    const postsGrid = document.getElementById('postsGrid');
+    const searchInput = document.getElementById('searchInput');
+    const postModal = document.getElementById('postModal');
+    const closeModal = document.getElementById('closeModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDescription = document.getElementById('modalDescription');
+    const modalPrice = document.getElementById('modalPrice');
+
+    // Render posts into the grid (with optional filtering)
+    function renderPosts(filter = "") {
+      postsGrid.innerHTML = "";
+      const filteredPosts = posts.filter(post =>
+        post.title.toLowerCase().includes(filter.toLowerCase()) ||
+        post.description.toLowerCase().includes(filter.toLowerCase())
+      );
+      if (filteredPosts.length === 0) {
+        postsGrid.innerHTML =
+          "<p style='grid-column: 1 / -1; text-align: center;'>No posts found.</p>";
+        return;
+      }
+      filteredPosts.forEach(post => {
+        const card = document.createElement("div");
+        card.className = "post-card";
+        card.innerHTML = `
+          <h2>${post.title}</h2>
+          <p>${post.description.substring(0, 60)}...</p>
+        `;
+        card.addEventListener("click", () => showPostDetails(post.id));
+        postsGrid.appendChild(card);
+      });
+    }
+
+    // Show post details in a modal
+    function showPostDetails(id) {
+      const post = posts.find(p => p.id === id);
+      if (post) {
+        modalTitle.innerText = post.title;
+        modalDescription.innerText = post.description;
+        modalPrice.innerText = `Price: ${post.price}`;
+        postModal.classList.add("active");
+      }
+    }
+
+    // Close the modal when the close icon is clicked
+    closeModal.addEventListener("click", () => {
+      postModal.classList.remove("active");
+    });
+
+    // Close the modal when clicking outside the modal content
+    window.addEventListener("click", (e) => {
+      if (e.target === postModal) {
+        postModal.classList.remove("active");
+      }
+    });
+
+    // Filter posts as the user types
+    searchInput.addEventListener("input", (e) => {
+      renderPosts(e.target.value);
+    });
+
+    // Initial render of posts
+    renderPosts();
+  </script>
 </body>
 </html>
