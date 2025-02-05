@@ -211,15 +211,14 @@
   </div>
 
   <script>
-    // Sample posts data with actual photos from Unsplash
+    // Sample posts data with actual photos from Unsplash / iStock / Unsplash Premium
     const posts = [
       {
         id: 1,
         title: "Bike for Sale",
         description: "Great condition, used for one year. Pickup on campus.",
         price: "$100",
-        photo: "https://plus.unsplash.com/premium_photo-1678718713393-2b88cde9605b?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        // photo: "https://source.unsplash.com/400x300/?bike"
+        photo: "https://plus.unsplash.com/premium_photo-1678718713393-2b88cde9605b?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3"
       },
       {
         id: 2,
@@ -233,21 +232,21 @@
         title: "CS Textbook",
         description: "Intro to Algorithms in excellent condition. No highlights or marks.",
         price: "$30",
-        photo: "https://images.unsplash.com/photo-1588912914017-923900a34710?q=80&w=3019&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        photo: "https://images.unsplash.com/photo-1588912914017-923900a34710?q=80&w=3019&auto=format&fit=crop&ixlib=rb-4.0.3"
       },
       {
         id: 4,
         title: "Dorm Furniture",
         description: "Selling a set of dorm furniture including a bed, desk, and chair.",
         price: "$150",
-        photo: "https://images.unsplash.com/photo-1486946255434-2466348c2166?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        photo: "https://images.unsplash.com/photo-1486946255434-2466348c2166?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3"
       },
       {
         id: 5,
         title: "Guitar Lessons",
         description: "Offering beginner guitar lessons at affordable rates. Flexible schedule.",
         price: "Starting at $20/hr",
-        photo: "https://plus.unsplash.com/premium_photo-1681396936891-ed738c53cb21?q=80&w=3088&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        photo: "https://plus.unsplash.com/premium_photo-1681396936891-ed738c53cb21?q=80&w=3088&auto=format&fit=crop&ixlib=rb-4.0.3"
       }
     ];
 
@@ -260,6 +259,44 @@
     const modalDescription = document.getElementById('modalDescription');
     const modalPrice = document.getElementById('modalPrice');
     const modalPhoto = document.getElementById('modalPhoto');
+
+    /**
+     * Opens the modal for a given post.
+     * @param {Object} post - The post object.
+     * @param {boolean} updateHistory - If true, update the URL hash.
+     */
+    function openModal(post, updateHistory = true) {
+      if (updateHistory) {
+        // Update the URL with a unique hash for the post.
+        window.history.pushState({ postId: post.id }, '', `#post=${post.id}`);
+      }
+      modalPhoto.src = post.photo;
+      modalPhoto.alt = post.title;
+      modalTitle.innerText = post.title;
+      modalDescription.innerText = post.description;
+      modalPrice.innerText = `Price: ${post.price}`;
+      postModal.classList.add("active");
+    }
+
+    /**
+     * Closes the modal and removes the post hash from the URL.
+     */
+    function closeModalFunction() {
+      postModal.classList.remove("active");
+      // Remove the hash from the URL.
+      window.history.pushState({}, '', window.location.pathname + window.location.search);
+    }
+
+    /**
+     * Show post details in a modal.
+     * @param {number} id - The ID of the post.
+     */
+    function showPostDetails(id) {
+      const post = posts.find(p => p.id === id);
+      if (post) {
+        openModal(post, true);
+      }
+    }
 
     // Render posts into the grid (with optional filtering)
     function renderPosts(filter = "") {
@@ -286,28 +323,13 @@
       });
     }
 
-    // Show post details in a modal
-    function showPostDetails(id) {
-      const post = posts.find(p => p.id === id);
-      if (post) {
-        modalPhoto.src = post.photo;
-        modalPhoto.alt = post.title;
-        modalTitle.innerText = post.title;
-        modalDescription.innerText = post.description;
-        modalPrice.innerText = `Price: ${post.price}`;
-        postModal.classList.add("active");
-      }
-    }
-
     // Close the modal when the close icon is clicked
-    closeModal.addEventListener("click", () => {
-      postModal.classList.remove("active");
-    });
+    closeModal.addEventListener("click", closeModalFunction);
 
     // Close the modal when clicking outside the modal content
     window.addEventListener("click", (e) => {
       if (e.target === postModal) {
-        postModal.classList.remove("active");
+        closeModalFunction();
       }
     });
 
@@ -316,8 +338,32 @@
       renderPosts(e.target.value);
     });
 
+    // Listen for popstate events so that back/forward navigation opens/closes the modal
+    window.addEventListener("popstate", () => {
+      if (window.location.hash.startsWith("#post=")) {
+        const id = parseInt(window.location.hash.replace("#post=", ""), 10);
+        const post = posts.find(p => p.id === id);
+        if (post) {
+          openModal(post, false);
+        }
+      } else {
+        // If no hash is present, ensure the modal is closed.
+        postModal.classList.remove("active");
+      }
+    });
+
     // Initial render of posts
     renderPosts();
+
+    // On page load, check if there is a hash for a specific post
+    if (window.location.hash.startsWith("#post=")) {
+      const id = parseInt(window.location.hash.replace("#post=", ""), 10);
+      const post = posts.find(p => p.id === id);
+      if (post) {
+        openModal(post, false);
+      }
+    }
   </script>
 </body>
 </html>
+
