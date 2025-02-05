@@ -86,6 +86,14 @@
       transform: translateY(-5px);
       box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
     }
+    /* Post Image in Card */
+    .post-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
     .post-card h2 {
       font-size: 1.2rem;
       margin-bottom: 10px;
@@ -142,6 +150,13 @@
       color: #888;
       cursor: pointer;
     }
+    /* Modal Photo */
+    .modal-content img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
     .modal-content h2 {
       margin-bottom: 15px;
       color: #8c1515;
@@ -187,6 +202,8 @@
   <div class="modal" id="postModal">
     <div class="modal-content">
       <span class="close-modal" id="closeModal">&times;</span>
+      <!-- Post image in Modal -->
+      <img id="modalPhoto" src="" alt="Post Photo" />
       <h2 id="modalTitle"></h2>
       <p id="modalDescription"></p>
       <p class="price" id="modalPrice"></p>
@@ -194,37 +211,42 @@
   </div>
 
   <script>
-    // Sample posts data
+    // Sample posts data with photo placeholders
     const posts = [
       {
         id: 1,
         title: "Bike for Sale",
         description: "Great condition, used for one year. Pickup on campus.",
-        price: "$100"
+        price: "$100",
+        photo: "https://via.placeholder.com/400x300?text=Bike"
       },
       {
         id: 2,
         title: "Roommate Wanted",
         description: "Looking for a roommate near Stanford campus. Spacious room with great amenities.",
-        price: "$800/mo"
+        price: "$800/mo",
+        photo: "https://via.placeholder.com/400x300?text=Roommate"
       },
       {
         id: 3,
         title: "CS Textbook",
         description: "Intro to Algorithms in excellent condition. No highlights or marks.",
-        price: "$30"
+        price: "$30",
+        photo: "https://via.placeholder.com/400x300?text=Textbook"
       },
       {
         id: 4,
         title: "Dorm Furniture",
         description: "Selling a set of dorm furniture including a bed, desk, and chair.",
-        price: "$150"
+        price: "$150",
+        photo: "https://via.placeholder.com/400x300?text=Furniture"
       },
       {
         id: 5,
         title: "Guitar Lessons",
         description: "Offering beginner guitar lessons at affordable rates. Flexible schedule.",
-        price: "Starting at $20/hr"
+        price: "Starting at $20/hr",
+        photo: "https://via.placeholder.com/400x300?text=Lessons"
       }
     ];
 
@@ -236,6 +258,7 @@
     const modalTitle = document.getElementById('modalTitle');
     const modalDescription = document.getElementById('modalDescription');
     const modalPrice = document.getElementById('modalPrice');
+    const modalPhoto = document.getElementById('modalPhoto');
 
     // Render posts into the grid (with optional filtering)
     function renderPosts(filter = "") {
@@ -253,6 +276,7 @@
         const card = document.createElement("div");
         card.className = "post-card";
         card.innerHTML = `
+          <img src="${post.photo}" alt="${post.title}" />
           <h2>${post.title}</h2>
           <p>${post.description.substring(0, 60)}...</p>
         `;
@@ -265,6 +289,8 @@
     function showPostDetails(id) {
       const post = posts.find(p => p.id === id);
       if (post) {
+        modalPhoto.src = post.photo;
+        modalPhoto.alt = post.title;
         modalTitle.innerText = post.title;
         modalDescription.innerText = post.description;
         modalPrice.innerText = `Price: ${post.price}`;
