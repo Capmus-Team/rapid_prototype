@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUpost Marketplace</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; padding: 0; }
+        .container { max-width: 800px; margin: auto; }
+        .post { padding: 10px; border: 1px solid #ddd; margin-bottom: 10px; cursor: pointer; }
+        .post-title { font-weight: bold; }
+        .post-detail { display: none; }
+        .back-button { display: none; margin-bottom: 20px; cursor: pointer; color: blue; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SUpost Marketplace</h1>
+        <div id="post-list">
+            <div class="post" onclick="showPost(1)">
+                <p class="post-title">Bike for Sale - $100</p>
+                <p>Great condition, used for one year.</p>
+            </div>
+            <div class="post" onclick="showPost(2)">
+                <p class="post-title">Roommate Wanted - $800/mo</p>
+                <p>Looking for a roommate near Stanford campus.</p>
+            </div>
+            <div class="post" onclick="showPost(3)">
+                <p class="post-title">CS Textbook - $30</p>
+                <p>Intro to Algorithms, great condition.</p>
+            </div>
+        </div>
+
+        <div id="post-detail" class="post-detail">
+            <p class="back-button" onclick="goBack()">&larr; Back to posts</p>
+            <h2 id="detail-title"></h2>
+            <p id="detail-description"></p>
+            <p id="detail-price"></p>
+        </div>
+    </div>
+
+    <script>
+        const posts = [
+            { id: 1, title: "Bike for Sale - $100", description: "Great condition, used for one year. Pickup on campus.", price: "$100" },
+            { id: 2, title: "Roommate Wanted - $800/mo", description: "Looking for a roommate near Stanford campus. Spacious room, great amenities.", price: "$800/mo" },
+            { id: 3, title: "CS Textbook - $30", description: "Intro to Algorithms, great condition. No highlights or marks.", price: "$30" }
+        ];
+
+        function showPost(id) {
+            const post = posts.find(p => p.id === id);
+            document.getElementById('detail-title').innerText = post.title;
+            document.getElementById('detail-description').innerText = post.description;
+            document.getElementById('detail-price').innerText = `Price: ${post.price}`;
+            
+            document.getElementById('post-list').style.display = 'none';
+            document.getElementById('post-detail').style.display = 'block';
+            document.querySelector('.back-button').style.display = 'block';
+        }
+
+        function goBack() {
+            document.getElementById('post-list').style.display = 'block';
+            document.getElementById('post-detail').style.display = 'none';
+            document.querySelector('.back-button').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
