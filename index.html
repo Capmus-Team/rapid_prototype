@@ -4,7 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Capmus Marketplace</title>
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <!-- Google Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <style>
     /* Reset and Base Styles */
     * {
@@ -13,14 +16,13 @@
       box-sizing: border-box;
     }
     body {
-      /* Updated background gradient to complement the primary blue */
+      font-family: 'Poppins', sans-serif;
       background: linear-gradient(135deg, #1A3771, #2D5D98);
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       padding: 20px;
-      font-family: 'Poppins', sans-serif;
     }
     /* App Container */
     .app-container {
@@ -35,7 +37,7 @@
     }
     /* Header Styling */
     header {
-      background: #1A3771; /* Primary blue */
+      background: #1A3771;
       padding: 20px;
       text-align: center;
       color: #fff;
@@ -242,7 +244,18 @@
       "services": "#795548"
     };
 
-    // Sample posts data with actual photos and categories
+    // Mapping for Material Icons (from Google Material Icons)
+    const categoryIcons = {
+      "housing": "home",
+      "for sale": "local_offer",
+      "jobs": "work",
+      "personals": "person",
+      "campus job": "school",
+      "community": "group",
+      "services": "build"
+    };
+
+    // Sample posts data with actual photos, categories, and a sample for each category.
     const posts = [
       {
         id: 1,
@@ -274,7 +287,7 @@
         description: "Selling a set of dorm furniture including a bed, desk, and chair.",
         price: "$150",
         photo: "https://images.unsplash.com/photo-1486946255434-2466348c2166?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3",
-        category: "housing"
+        category: "for sale"
       },
       {
         id: 5,
@@ -299,6 +312,22 @@
         price: "Free",
         photo: "https://source.unsplash.com/400x300/?community,meetup",
         category: "community"
+      },
+      {
+        id: 8,
+        title: "Study Buddy Wanted",
+        description: "Looking for a study partner to tackle challenging courses together.",
+        price: "N/A",
+        photo: "https://source.unsplash.com/400x300/?study,friend",
+        category: "personals"
+      },
+      {
+        id: 9,
+        title: "Campus Tutor Position",
+        description: "On-campus tutoring job available for knowledgeable students.",
+        price: "$15/hr",
+        photo: "https://source.unsplash.com/400x300/?tutor,university",
+        category: "campus job"
       }
     ];
 
@@ -326,7 +355,8 @@
       modalPhoto.src = post.photo;
       modalPhoto.alt = post.title;
       modalTitle.innerText = post.title;
-      modalCategory.innerText = post.category;
+      // Include the Material Icon in the modal category label.
+      modalCategory.innerHTML = `<span class="material-icons" style="vertical-align: middle; margin-right: 4px;">${categoryIcons[post.category]}</span>${post.category}`;
       modalCategory.style.backgroundColor = categoryColors[post.category] || '#000';
       modalDescription.innerText = post.description;
       modalPrice.innerText = `Price: ${post.price}`;
@@ -372,7 +402,7 @@
           <img src="${post.photo}" alt="${post.title}" />
           <h2>${post.title}</h2>
           <span class="post-category" style="background-color: ${categoryColors[post.category]};">
-            ${post.category}
+            <span class="material-icons" style="vertical-align: middle; margin-right: 4px;">${categoryIcons[post.category]}</span>${post.category}
           </span>
           <p>${post.description.substring(0, 60)}...</p>
         `;
