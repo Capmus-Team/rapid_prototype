@@ -153,6 +153,9 @@
       padding: 30px;
       position: relative;
       animation: fadeInUp 0.5s;
+      /* Added to enable scrolling if content is tall */
+      max-height: calc(100vh - 60px);
+      overflow-y: auto;
     }
     @keyframes fadeInUp {
       from {
