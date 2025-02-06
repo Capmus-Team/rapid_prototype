@@ -106,14 +106,24 @@
       font-size: 0.95rem;
       color: #555;
     }
-    /* Category Label for Post Cards */
-    .post-category {
+    /**
+     * Category labels — unified styling for both .post-category (cards)
+     * and .modal-category (modal). Ensures text is always white (#fff).
+     */
+    .post-category,
+    .modal-category {
       display: inline-block;
       padding: 4px 8px;
       border-radius: 4px;
       color: #fff;
-      font-size: 0.8rem;
+      font-size: 0.85rem;
+      font-weight: 600;
       margin-bottom: 10px;
+    }
+    /* We can override margins for .modal-category if needed */
+    .modal-category {
+      font-size: 0.9rem;
+      margin-bottom: 15px;
     }
     /* Modal Styles */
     .modal {
@@ -182,15 +192,6 @@
       margin-top: 15px;
       color: #000;
     }
-    /* Category Label for Modal */
-    .modal-category {
-      display: inline-block;
-      padding: 4px 8px;
-      border-radius: 4px;
-      color: #fff;
-      font-size: 0.9rem;
-      margin-bottom: 15px;
-    }
     /* Responsive Adjustments */
     @media (max-width: 600px) {
       header h1 {
@@ -241,7 +242,9 @@
       "personals": "#E91E63",
       "campus job": "#009688",
       "community": "#F44336",
-      "services": "#795548"
+      "services": "#795548",
+      "event": "#283593",
+      "resume": "#263238"
     };
 
     // Mapping for Material Icons (from Google Material Icons)
@@ -252,7 +255,9 @@
       "personals": "person",
       "campus job": "school",
       "community": "group",
-      "services": "build"
+      "services": "build",
+      "event": "event",
+      "resume": "description"
     };
 
     // Sample posts data with actual photos, categories, and a sample for each category.
@@ -328,6 +333,22 @@
         price: "$15/hr",
         photo: "https://media.istockphoto.com/id/170947812/photo/working-together.jpg?s=1024x1024&w=is&k=20&c=d4RiPJQDC1_ids2CgPfXl2pTj0qBf7OkSQSZqN_m1h8=",
         category: "campus job"
+      },
+      {
+        id: 10,
+        title: "Business Party",
+        description: "Join us for a glamorous business networking event with live music, cocktails, and gourmet hors d'oeuvres.",
+        price: "Tickets: $50",
+        photo: "https://images.unsplash.com/photo-1518609878373-06d740f60d8b?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.0.3",
+        category: "event"
+      },
+      {
+        id: 11,
+        title: "CV of a Musician",
+        description: "Professional resume showcasing a talented musician with years of performance and production experience. Available for gigs and collaborations.",
+        price: "N/A",
+        photo: "https://images.unsplash.com/photo-1511376777868-611b54f68947?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.0.3",
+        category: "resume"
       }
     ];
 
@@ -355,9 +376,11 @@
       modalPhoto.src = post.photo;
       modalPhoto.alt = post.title;
       modalTitle.innerText = post.title;
-      // Include the Material Icon in the modal category label.
+      // Update the modal category label with the icon and text.
       modalCategory.innerHTML = `<span class="material-icons" style="vertical-align: middle; margin-right: 4px;">${categoryIcons[post.category]}</span>${post.category}`;
+      // Set the background color and explicitly set the text color to white.
       modalCategory.style.backgroundColor = categoryColors[post.category] || '#000';
+      modalCategory.style.color = '#fff';
       modalDescription.innerText = post.description;
       modalPrice.innerText = `Price: ${post.price}`;
       postModal.classList.add("active");
