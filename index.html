@@ -5,9 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Capmus Marketplace</title>
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+    rel="stylesheet"
+  />
   <!-- Google Material Icons -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet"
+  />
   <style>
     /* Reset and Base Styles */
     * {
@@ -120,7 +126,6 @@
       font-weight: 600;
       margin-bottom: 10px;
     }
-    /* We can override margins for .modal-category if needed */
     .modal-category {
       font-size: 0.9rem;
       margin-bottom: 15px;
@@ -153,7 +158,6 @@
       padding: 30px;
       position: relative;
       animation: fadeInUp 0.5s;
-      /* Added to enable scrolling if content is tall */
       max-height: calc(100vh - 60px);
       overflow-y: auto;
     }
@@ -175,25 +179,52 @@
       color: #888;
       cursor: pointer;
     }
-    /* Modal Photo */
-    .modal-content img {
+    /* Modal Slider Styles */
+    #modalSlider {
+      position: relative;
+      margin-bottom: 15px;
+    }
+    #modalSlider img {
       width: 100%;
       height: auto;
       border-radius: 8px;
-      margin-bottom: 15px;
     }
-    .modal-content h2 {
-      margin-bottom: 15px;
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2rem;
       color: #1A3771;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+    }
+    .slider-arrow.left {
+      left: 10px;
+    }
+    .slider-arrow.right {
+      right: 10px;
+    }
+    /* Modal Text Styles */
+    .modal-content h2 {
+      margin-bottom: 5px;
+      color: #1A3771;
+    }
+    .modal-content .price {
+      font-weight: 600;
+      margin-top: 5px;
+      margin-bottom: 20px; /* Some spacing before the slider */
+      color: #000;
     }
     .modal-content p {
       margin-bottom: 10px;
       color: #555;
-    }
-    .modal-content .price {
-      font-weight: 600;
-      margin-top: 15px;
-      color: #000;
     }
     /* Responsive Adjustments */
     @media (max-width: 600px) {
@@ -213,7 +244,7 @@
       <h1>Capmus</h1>
       <p>Sell your stuff.</p>
     </header>
-    <!-- Search Bar here-->
+    <!-- Search Bar -->
     <div class="search-bar">
       <input type="text" id="searchInput" placeholder="Search posts..." />
     </div>
@@ -227,12 +258,23 @@
   <div class="modal" id="postModal">
     <div class="modal-content">
       <span class="close-modal" id="closeModal">&times;</span>
-      <!-- Post image in Modal -->
-      <img id="modalPhoto" src="" alt="Post Photo" />
+
+      <!-- Title first -->
       <h2 id="modalTitle"></h2>
+      <!-- Category label under the title -->
       <p class="modal-category" id="modalCategory"></p>
-      <p id="modalDescription"></p>
+      <!-- Price below category -->
       <p class="price" id="modalPrice"></p>
+
+      <!-- Image Slider -->
+      <div id="modalSlider">
+        <img id="modalPhoto" src="" alt="Post Photo" />
+        <div class="slider-arrow left" id="leftArrow">&#10094;</div>
+        <div class="slider-arrow right" id="rightArrow">&#10095;</div>
+      </div>
+
+      <!-- Description last -->
+      <p id="modalDescription"></p>
     </div>
   </div>
 
@@ -263,14 +305,21 @@
       "resume": "description"
     };
 
-    // Sample posts data with actual photos, categories, and a sample for each category.
+    // Global variables for the modal slider
+    let currentPhotos = [];
+    let currentPhotoIndex = 0;
+
+    // Sample posts data with multiple photos (an array for each post)
     const posts = [
       {
         id: 1,
         title: "Orange Bike for Sale",
         description: "Great condition, used for one year. Pickup on campus.",
         price: "$100",
-        photo: "https://plus.unsplash.com/premium_photo-1678718713393-2b88cde9605b?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3",
+        photos: [
+          "https://plus.unsplash.com/premium_photo-1678718713393-2b88cde9605b?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3",
+          "https://images.unsplash.com/photo-1611095564985-0660f731e732?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3"
+        ],
         category: "for sale"
       },
       {
@@ -278,7 +327,10 @@
         title: "Roommate Wanted",
         description: "Looking for a roommate near campus. Spacious room with great amenities.",
         price: "$800/mo",
-        photo: "https://media.istockphoto.com/id/1010132614/photo/excited-woman-receiving-a-gift-from-a-friend.jpg?s=1024x1024&w=is&k=20&c=sll2rqzjuvnMnu0Uw8d8nLRffIDD7ixL2c2ScpKOfDs=",
+        photos: [
+          "https://media.istockphoto.com/id/1010132614/photo/excited-woman-receiving-a-gift-from-a-friend.jpg?s=1024x1024&w=is&k=20&c=sll2rqzjuvnMnu0Uw8d8nLRffIDD7ixL2c2ScpKOfDs=",
+          "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=1024&auto=format&fit=crop&ixlib=rb-4.0.3"
+        ],
         category: "housing"
       },
       {
@@ -286,7 +338,10 @@
         title: "CS Textbook",
         description: "Intro to Algorithms in excellent condition. No highlights or marks.",
         price: "$30",
-        photo: "https://images.unsplash.com/photo-1588912914017-923900a34710?q=80&w=3019&auto=format&fit=crop&ixlib=rb-4.0.3",
+        photos: [
+          "https://images.unsplash.com/photo-1588912914017-923900a34710?q=80&w=3019&auto=format&fit=crop&ixlib=rb-4.0.3",
+          "https://images.unsplash.com/photo-1551024601-bec78aea704b?q=80&w=3019&auto=format&fit=crop&ixlib=rb-4.0.3"
+        ],
         category: "for sale"
       },
       {
@@ -294,7 +349,10 @@
         title: "Dorm Furniture",
         description: "Selling a set of dorm furniture including a bed, desk, and chair.",
         price: "$150",
-        photo: "https://images.unsplash.com/photo-1486946255434-2466348c2166?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3",
+        photos: [
+          "https://images.unsplash.com/photo-1486946255434-2466348c2166?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3",
+          "https://images.unsplash.com/photo-1588854337111-0232f7283e34?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3"
+        ],
         category: "for sale"
       },
       {
@@ -302,7 +360,10 @@
         title: "Guitar Lessons",
         description: "Offering beginner guitar lessons at affordable rates. Flexible schedule.",
         price: "Starting at $20/hr",
-        photo: "https://plus.unsplash.com/premium_photo-1681396936891-ed738c53cb21?q=80&w=3088&auto=format&fit=crop&ixlib=rb-4.0.3",
+        photos: [
+          "https://plus.unsplash.com/premium_photo-1681396936891-ed738c53cb21?q=80&w=3088&auto=format&fit=crop&ixlib=rb-4.0.3",
+          "https://images.unsplash.com/photo-1511376777868-611b54f68947?q=80&w=3088&auto=format&fit=crop&ixlib=rb-4.0.3"
+        ],
         category: "services"
       },
       {
@@ -310,7 +371,10 @@
         title: "Internship Opportunity",
         description: "Exciting internship in tech. Apply now for a rewarding experience.",
         price: "Competitive",
-        photo: "https://plus.unsplash.com/premium_photo-1661502996011-cbd328de50f2?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        photos: [
+          "https://plus.unsplash.com/premium_photo-1661502996011-cbd328de50f2?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "https://images.unsplash.com/photo-1581091215367-723d6a0a3b2f?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.0.3"
+        ],
         category: "jobs"
       },
       {
@@ -318,7 +382,10 @@
         title: "Community Meetup",
         description: "Join us for a community networking event. Connect with peers!",
         price: "Free",
-        photo: "https://plus.unsplash.com/premium_photo-1706061121025-4ea17e4d9d9a?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        photos: [
+          "https://plus.unsplash.com/premium_photo-1706061121025-4ea17e4d9d9a?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.0.3",
+          "https://images.unsplash.com/photo-1516542076529-1ea3854896e4?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.0.3"
+        ],
         category: "community"
       },
       {
@@ -326,7 +393,10 @@
         title: "Study Buddy Wanted",
         description: "Looking for a study partner to tackle challenging courses together.",
         price: "N/A",
-        photo: "https://images.unsplash.com/photo-1616428317393-acd93938b4fa?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        photos: [
+          "https://images.unsplash.com/photo-1616428317393-acd93938b4fa?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3",
+          "https://images.unsplash.com/photo-1593642634367-d91a135587b5?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3"
+        ],
         category: "personals"
       },
       {
@@ -334,7 +404,10 @@
         title: "Campus Tutor Position",
         description: "On-campus tutoring job available for knowledgeable students.",
         price: "$15/hr",
-        photo: "https://media.istockphoto.com/id/170947812/photo/working-together.jpg?s=1024x1024&w=is&k=20&c=d4RiPJQDC1_ids2CgPfXl2pTj0qBf7OkSQSZqN_m1h8=",
+        photos: [
+          "https://media.istockphoto.com/id/170947812/photo/working-together.jpg?s=1024x1024&w=is&k=20&c=d4RiPJQDC1_ids2CgPfXl2pTj0qBf7OkSQSZqN_m1h8=",
+          "https://images.unsplash.com/photo-1601015281167-111b5c8e67ea?q=80&w=1024&auto=format&fit=crop&ixlib=rb-4.0.3"
+        ],
         category: "campus job"
       },
       {
@@ -342,7 +415,10 @@
         title: "Business Party",
         description: "Join us for a glamorous business networking event with live music, cocktails, and gourmet hors d'oeuvres.",
         price: "Tickets: $50",
-        photo: "https://images.unsplash.com/photo-1518609878373-06d740f60d8b?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.0.3",
+        photos: [
+          "https://images.unsplash.com/photo-1518609878373-06d740f60d8b?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.0.3",
+          "https://images.unsplash.com/photo-1519985176271-adb1088fa94c?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.0.3"
+        ],
         category: "event"
       },
       {
@@ -350,7 +426,10 @@
         title: "CV of a Musician",
         description: "Professional resume showcasing a talented musician with years of performance and production experience. Available for gigs and collaborations.",
         price: "N/A",
-        photo: "https://images.unsplash.com/photo-1511376777868-611b54f68947?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.0.3",
+        photos: [
+          "https://images.unsplash.com/photo-1511376777868-611b54f68947?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.0.3",
+          "https://images.unsplash.com/photo-1551446591-142875a901a1?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.0.3"
+        ],
         category: "resume"
       }
     ];
@@ -365,6 +444,15 @@
     const modalPrice = document.getElementById('modalPrice');
     const modalPhoto = document.getElementById('modalPhoto');
     const modalCategory = document.getElementById('modalCategory');
+    const leftArrow = document.getElementById('leftArrow');
+    const rightArrow = document.getElementById('rightArrow');
+
+    /**
+     * Updates the modal image based on currentPhotoIndex.
+     */
+    function updateModalPhoto() {
+      modalPhoto.src = currentPhotos[currentPhotoIndex];
+    }
 
     /**
      * Opens the modal for a given post.
@@ -376,17 +464,33 @@
         // Update the URL with a unique hash for the post.
         window.history.pushState({ postId: post.id }, '', `#post=${post.id}`);
       }
-      modalPhoto.src = post.photo;
-      modalPhoto.alt = post.title;
+      // Set up the modal slider
+      currentPhotos = post.photos;
+      currentPhotoIndex = 0;
+      updateModalPhoto();
+
+      // Title, category, price, description
       modalTitle.innerText = post.title;
-      // Update the modal category label with the icon and text.
-      modalCategory.innerHTML = `<span class="material-icons" style="vertical-align: middle; margin-right: 4px;">${categoryIcons[post.category]}</span>${post.category}`;
-      // Set the background color and explicitly set the text color to white.
+      modalCategory.innerHTML = `
+        <span class="material-icons" style="vertical-align: middle; margin-right: 4px;">
+          ${categoryIcons[post.category]}
+        </span>${post.category}
+      `;
       modalCategory.style.backgroundColor = categoryColors[post.category] || '#000';
       modalCategory.style.color = '#fff';
-      modalDescription.innerText = post.description;
       modalPrice.innerText = `Price: ${post.price}`;
+      modalDescription.innerText = post.description;
+
       postModal.classList.add("active");
+
+      // Show or hide arrows depending on number of photos
+      if (currentPhotos.length > 1) {
+        leftArrow.style.display = "block";
+        rightArrow.style.display = "block";
+      } else {
+        leftArrow.style.display = "none";
+        rightArrow.style.display = "none";
+      }
     }
 
     /**
@@ -394,7 +498,6 @@
      */
     function closeModalFunction() {
       postModal.classList.remove("active");
-      // Remove the hash from the URL.
       window.history.pushState({}, '', window.location.pathname + window.location.search);
     }
 
@@ -409,7 +512,7 @@
       }
     }
 
-    // Render posts into the grid (with optional filtering)
+    // Render posts into the grid (with optional text filter)
     function renderPosts(filter = "") {
       postsGrid.innerHTML = "";
       const filteredPosts = posts.filter(post =>
@@ -424,11 +527,14 @@
       filteredPosts.forEach(post => {
         const card = document.createElement("div");
         card.className = "post-card";
+        // Use the first photo for the card thumbnail
         card.innerHTML = `
-          <img src="${post.photo}" alt="${post.title}" />
+          <img src="${post.photos[0]}" alt="${post.title}" />
           <h2>${post.title}</h2>
           <span class="post-category" style="background-color: ${categoryColors[post.category]};">
-            <span class="material-icons" style="vertical-align: middle; margin-right: 4px;">${categoryIcons[post.category]}</span>${post.category}
+            <span class="material-icons" style="vertical-align: middle; margin-right: 4px;">
+              ${categoryIcons[post.category]}
+            </span>${post.category}
           </span>
           <p>${post.description.substring(0, 60)}...</p>
         `;
@@ -436,6 +542,27 @@
         postsGrid.appendChild(card);
       });
     }
+
+    // Arrow event listeners for slider
+    leftArrow.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (currentPhotoIndex > 0) {
+        currentPhotoIndex--;
+      } else {
+        currentPhotoIndex = currentPhotos.length - 1;
+      }
+      updateModalPhoto();
+    });
+
+    rightArrow.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (currentPhotoIndex < currentPhotos.length - 1) {
+        currentPhotoIndex++;
+      } else {
+        currentPhotoIndex = 0;
+      }
+      updateModalPhoto();
+    });
 
     // Close the modal when the close icon is clicked
     closeModal.addEventListener("click", closeModalFunction);
