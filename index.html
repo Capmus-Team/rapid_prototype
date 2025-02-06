@@ -182,12 +182,12 @@
     /* Modal Slider Styles */
     #modalSlider {
       position: relative;
+      margin-bottom: 15px;
     }
     #modalSlider img {
       width: 100%;
       height: auto;
       border-radius: 8px;
-      margin-bottom: 15px;
     }
     .slider-arrow {
       position: absolute;
@@ -213,17 +213,18 @@
     }
     /* Modal Text Styles */
     .modal-content h2 {
-      margin-bottom: 15px;
+      margin-bottom: 5px;
       color: #1A3771;
+    }
+    .modal-content .price {
+      font-weight: 600;
+      margin-top: 5px;
+      margin-bottom: 20px; /* Some spacing before the slider */
+      color: #000;
     }
     .modal-content p {
       margin-bottom: 10px;
       color: #555;
-    }
-    .modal-content .price {
-      font-weight: 600;
-      margin-top: 15px;
-      color: #000;
     }
     /* Responsive Adjustments */
     @media (max-width: 600px) {
@@ -257,15 +258,23 @@
   <div class="modal" id="postModal">
     <div class="modal-content">
       <span class="close-modal" id="closeModal">&times;</span>
+
+      <!-- Title first -->
+      <h2 id="modalTitle"></h2>
+      <!-- Category label under the title -->
+      <p class="modal-category" id="modalCategory"></p>
+      <!-- Price below category -->
+      <p class="price" id="modalPrice"></p>
+
+      <!-- Image Slider -->
       <div id="modalSlider">
         <img id="modalPhoto" src="" alt="Post Photo" />
         <div class="slider-arrow left" id="leftArrow">&#10094;</div>
         <div class="slider-arrow right" id="rightArrow">&#10095;</div>
       </div>
-      <h2 id="modalTitle"></h2>
-      <p class="modal-category" id="modalCategory"></p>
+
+      <!-- Description last -->
       <p id="modalDescription"></p>
-      <p class="price" id="modalPrice"></p>
     </div>
   </div>
 
@@ -439,7 +448,7 @@
     const rightArrow = document.getElementById('rightArrow');
 
     /**
-     * Updates the modal image based on the currentPhotoIndex.
+     * Updates the modal image based on currentPhotoIndex.
      */
     function updateModalPhoto() {
       modalPhoto.src = currentPhotos[currentPhotoIndex];
@@ -459,14 +468,21 @@
       currentPhotos = post.photos;
       currentPhotoIndex = 0;
       updateModalPhoto();
+
+      // Title, category, price, description
       modalTitle.innerText = post.title;
-      // Update the modal category label with the icon and text.
-      modalCategory.innerHTML = `<span class="material-icons" style="vertical-align: middle; margin-right: 4px;">${categoryIcons[post.category]}</span>${post.category}`;
+      modalCategory.innerHTML = `
+        <span class="material-icons" style="vertical-align: middle; margin-right: 4px;">
+          ${categoryIcons[post.category]}
+        </span>${post.category}
+      `;
       modalCategory.style.backgroundColor = categoryColors[post.category] || '#000';
       modalCategory.style.color = '#fff';
-      modalDescription.innerText = post.description;
       modalPrice.innerText = `Price: ${post.price}`;
+      modalDescription.innerText = post.description;
+
       postModal.classList.add("active");
+
       // Show or hide arrows depending on number of photos
       if (currentPhotos.length > 1) {
         leftArrow.style.display = "block";
@@ -496,7 +512,7 @@
       }
     }
 
-    // Render posts into the grid (with optional filtering)
+    // Render posts into the grid (with optional text filter)
     function renderPosts(filter = "") {
       postsGrid.innerHTML = "";
       const filteredPosts = posts.filter(post =>
@@ -516,7 +532,9 @@
           <img src="${post.photos[0]}" alt="${post.title}" />
           <h2>${post.title}</h2>
           <span class="post-category" style="background-color: ${categoryColors[post.category]};">
-            <span class="material-icons" style="vertical-align: middle; margin-right: 4px;">${categoryIcons[post.category]}</span>${post.category}
+            <span class="material-icons" style="vertical-align: middle; margin-right: 4px;">
+              ${categoryIcons[post.category]}
+            </span>${post.category}
           </span>
           <p>${post.description.substring(0, 60)}...</p>
         `;
@@ -570,6 +588,7 @@
           openModal(post, false);
         }
       } else {
+        // If no hash is present, ensure the modal is closed.
         postModal.classList.remove("active");
       }
     });
