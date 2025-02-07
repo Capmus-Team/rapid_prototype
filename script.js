@@ -5,11 +5,11 @@
     "for sale": "#FF9800",
     "jobs": "#9C27B0",
     "personals": "#E91E63",
-    "campus job": "#009688",
+    "campus jobs": "#009688",
     "community": "#F44336",
     "services": "#795548",
-    "event": "#283593",
-    "resume": "#263238"
+    "events": "#283593",
+    "resumes": "#263238"
   };
 
   // Mapping for Material Icons
@@ -18,11 +18,11 @@
     "for sale": "local_offer",
     "jobs": "work",
     "personals": "person",
-    "campus job": "school",
+    "campus jobs": "school",
     "community": "group",
     "services": "build",
-    "event": "event",
-    "resume": "description"
+    "events": "event",
+    "resumes": "description"
   };
 
   // Global variables for the modal slider
@@ -131,7 +131,7 @@
         "https://media.istockphoto.com/id/170947812/photo/working-together.jpg?s=1024x1024&w=is&k=20&c=d4RiPJQDC1_ids2CgPfXl2pTj0qBf7OkSQSZqN_m1h8=",
         "https://images.unsplash.com/photo-1601015281167-111b5c8e67ea?q=80&w=1024&auto=format&fit=crop&ixlib=rb-4.0.3"
       ],
-      category: "campus job"
+      category: "campus jobs"
     },
     {
       id: 10,
@@ -142,7 +142,7 @@
         "https://images.unsplash.com/photo-1518609878373-06d740f60d8b?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.0.3",
         "https://images.unsplash.com/photo-1519985176271-adb1088fa94c?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.0.3"
       ],
-      category: "event"
+      category: "events"
     },
     {
       id: 11,
@@ -153,7 +153,7 @@
         "https://images.unsplash.com/photo-1511376777868-611b54f68947?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.0.3",
         "https://images.unsplash.com/photo-1551446591-142875a901a1?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.0.3"
       ],
-      category: "resume"
+      category: "resumes"
     }
   ];
 
