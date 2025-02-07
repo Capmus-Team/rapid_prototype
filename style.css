@@ -364,6 +364,19 @@
         font-size: 0.95rem;
         color: #555;
       }
+
+      .post-price {
+        font-weight: 600;
+        color: #333;
+        margin: 5px 0;
+      }
+      
+      .post-time-ago {
+        font-size: 0.8rem;
+        color: #777;
+        margin-bottom: 5px;
+      }
+
       /* Category labels */
       .post-category,
       .modal-category {
