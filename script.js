@@ -29,8 +29,7 @@ const categoryColors = {
   let currentPhotoIndex = 0;
   let selectedCategory = "";
   
-  // Sample posts data with random createdAt values in the format "Day, Mon DD, YYYY hh:mm AM/PM"
-  // Also added two sample posts (id 12 and 13) with no photos.
+  // Sample posts data with random createdAt values and two posts with no photos.
   const posts = [
     {
       id: 1,
@@ -197,7 +196,7 @@ const categoryColors = {
       category: "for sale"
     }
   ];
-  
+    
   // DOM elements
   const postsGrid = document.getElementById('postsGrid');
   const searchInput = document.getElementById('searchInput');
@@ -211,10 +210,10 @@ const categoryColors = {
   const modalCategory = document.getElementById('modalCategory');
   const leftArrow = document.getElementById('leftArrow');
   const rightArrow = document.getElementById('rightArrow');
-  
+    
   const menuButton = document.getElementById('menuButton');
   const dropdownMenu = document.getElementById('dropdownMenu');
-  
+    
   // Toggle dropdown menu
   menuButton.addEventListener('click', (e) => {
     e.stopPropagation();
@@ -225,11 +224,11 @@ const categoryColors = {
       dropdownMenu.classList.remove('show');
     }
   });
-  
+    
   function updateModalPhoto() {
     modalPhoto.src = currentPhotos[currentPhotoIndex];
   }
-  
+    
   function openModal(post, updateHistory = true) {
     if (updateHistory) {
       window.history.pushState({ postId: post.id }, '', `#post=${post.id}`);
@@ -237,7 +236,7 @@ const categoryColors = {
     currentPhotos = post.photos;
     currentPhotoIndex = 0;
     updateModalPhoto();
-  
+    
     modalTitle.innerText = post.title;
     modalCategory.innerHTML = `
       <span class="material-icons" style="vertical-align: middle; margin-right: 4px;">
@@ -247,14 +246,14 @@ const categoryColors = {
     modalCategory.style.backgroundColor = categoryColors[post.category] || '#000';
     modalCategory.style.color = '#fff';
     modalPrice.innerText = `Price: ${post.price}`;
-  
+    
     // Set the created date/time
     const modalCreatedAt = document.getElementById('modalCreatedAt');
     modalCreatedAt.innerText = `Created on: ${post.createdAt}`;
-  
+    
     modalDescription.innerText = post.description;
     postModal.classList.add("active");
-  
+    
     if (currentPhotos.length > 1) {
       leftArrow.style.display = "block";
       rightArrow.style.display = "block";
@@ -263,19 +262,19 @@ const categoryColors = {
       rightArrow.style.display = "none";
     }
   }
-  
+    
   function closeModalFunction() {
     postModal.classList.remove("active");
     window.history.pushState({}, '', window.location.pathname + window.location.search);
   }
-  
+    
   function showPostDetails(id) {
     const post = posts.find(p => p.id === id);
     if (post) {
       openModal(post, true);
     }
   }
-  
+    
   function renderPosts(textFilter = "") {
     postsGrid.innerHTML = "";
     const filteredPosts = posts.filter(post => {
@@ -285,24 +284,25 @@ const categoryColors = {
         post.description.toLowerCase().includes(textFilter.toLowerCase());
       return matchesCategory && matchesText;
     });
-  
+    
     if (filteredPosts.length === 0) {
       postsGrid.innerHTML = "<p style='grid-column: 1 / -1; text-align: center;'>No posts found.</p>";
       return;
     }
-  
+    
     filteredPosts.forEach(post => {
       const card = document.createElement("div");
       card.className = "post-card";
       
-      // If the post has photos, display the first one; otherwise show a placeholder div
+      // If the post has photos, display the first one; otherwise, use the post description
       let photoHtml = "";
       if (post.photos && post.photos.length > 0) {
         photoHtml = `<img src="${post.photos[0]}" alt="${post.title}" />`;
       } else {
-        photoHtml = `<div class="post-placeholder">No photo available. Additional details about the post are provided here to maintain card height.</div>`;
+        // Instead of a simple placeholder, display the post description text in the "photo" area
+        photoHtml = `<div class="post-body-text">${post.description}</div>`;
       }
-  
+    
       card.innerHTML = `
         <div class="wishlist-icon">
           <i class="fas fa-heart"></i>
@@ -318,7 +318,7 @@ const categoryColors = {
         <p class="post-time-ago">${post.time_ago}</p>
         <p>${post.description.substring(0, 60)}...</p>
       `;
-  
+    
       const wishlistIcon = card.querySelector('.wishlist-icon');
       wishlistIcon.addEventListener("click", (e) => {
         e.stopPropagation();
@@ -333,12 +333,12 @@ const categoryColors = {
           }, 500);
         }, 2000);
       });
-  
+    
       card.addEventListener("click", () => showPostDetails(post.id));
       postsGrid.appendChild(card);
     });
   }
-  
+    
   leftArrow.addEventListener("click", (e) => {
     e.stopPropagation();
     if (currentPhotoIndex > 0) {
@@ -348,7 +348,7 @@ const categoryColors = {
     }
     updateModalPhoto();
   });
-  
+    
   rightArrow.addEventListener("click", (e) => {
     e.stopPropagation();
     if (currentPhotoIndex < currentPhotos.length - 1) {
@@ -358,19 +358,19 @@ const categoryColors = {
     }
     updateModalPhoto();
   });
-  
+    
   closeModalEl.addEventListener("click", closeModalFunction);
-  
+    
   window.addEventListener("click", (e) => {
     if (e.target === postModal) {
       closeModalFunction();
     }
   });
-  
+    
   searchInput.addEventListener("input", (e) => {
     renderPosts(e.target.value);
   });
-  
+    
   categoryBar.addEventListener("click", (e) => {
     const categoryOption = e.target.closest('.category-option');
     if (!categoryOption) return;
@@ -381,7 +381,7 @@ const categoryColors = {
     selectedCategory = categoryOption.dataset.category || "";
     renderPosts(searchInput.value);
   });
-  
+    
   window.addEventListener("popstate", () => {
     if (window.location.hash.startsWith("#post=")) {
       const id = parseInt(window.location.hash.replace("#post=", ""), 10);
@@ -393,9 +393,9 @@ const categoryColors = {
       postModal.classList.remove("active");
     }
   });
-  
+    
   renderPosts();
-  
+    
   if (window.location.hash.startsWith("#post=")) {
     const id = parseInt(window.location.hash.replace("#post=", ""), 10);
     const post = posts.find(p => p.id === id);
@@ -403,13 +403,13 @@ const categoryColors = {
       openModal(post, false);
     }
   }
-  
+    
   window.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
       closeModalFunction();
     }
   });
-  
+    
   document.getElementById("copyLinkButton").addEventListener("click", function() {
     const postUrl = window.location.href;
     navigator.clipboard.writeText(postUrl).then(function() {
@@ -418,22 +418,22 @@ const categoryColors = {
       alert("Failed to copy the link.");
     });
   });
-  
+    
   document.getElementById("facebookButton").addEventListener("click", function() {
     const postUrl = window.location.href;
     const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(postUrl)}`;
     window.open(facebookUrl, "_blank");
   });
-  
+    
   document.getElementById("xButton").addEventListener("click", function() {
     const postUrl = window.location.href;
     const xUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(postUrl)}`;
     window.open(xUrl, "_blank");
   });
-  
+    
   const categoryBarEl = document.getElementById('categoryBar');
   const categoryScrollArrow = document.getElementById('categoryScrollArrow');
-  
+    
   function updateCategoryBarArrow() {
     if (categoryBarEl.scrollWidth > categoryBarEl.clientWidth) {
       categoryScrollArrow.classList.add('show');
@@ -441,12 +441,12 @@ const categoryColors = {
       categoryScrollArrow.classList.remove('show');
     }
   }
-  
+    
   categoryBarEl.addEventListener('scroll', () => {});
-  
+    
   categoryScrollArrow.addEventListener('click', () => {
     categoryBarEl.scrollBy({ left: 200, behavior: 'smooth' });
   });
-  
+    
   window.addEventListener('load', updateCategoryBarArrow);
   window.addEventListener('resize', updateCategoryBarArrow);
