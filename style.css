@@ -49,27 +49,48 @@
       /* HEADER LAYOUT */
 
       /* Site header container */
-      .site-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        background: #fff;
-        padding: 10px 20px;
-        border-bottom: 1px solid #ddd;
-      }
+  /* Make the site-header a fixed top bar with flex layout */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Stays above other elements */
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 20px;
   
-  /* Left side: logo */
-  .header-left .logo {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #1A3771;
+    /* The key for placing everything in one row */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
   
-  /* Center: search bar container */
+  /* Left part: show the logo inline */
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* optional spacing between items */
+  }
+  
+  /* Center part: the search bar remains in the center */
   .header-center {
-    flex: 1; /* allow the center to stretch */
+    flex: 1; /* so it stretches across remaining space */
     display: flex;
     justify-content: center;
+    align-items: center;
+  }
+  
+  /* Right part: "Create post" + user menu side by side */
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* spacing between the link and menu icon */
+  }
+  
+  /* Because the header is fixed, push your .app-container down to avoid overlap */
+  .app-container {
+    margin-top: 70px; /* adjust if you need more/less space */
   }
   
   .header-search {
@@ -170,9 +191,18 @@
   
     /* Also add some bottom padding to your .app-container or main content,
        so it doesn't get hidden behind the bottom nav. For example: */
-    .app-container {
-      padding-bottom: 80px; /* so the bottom nav doesn't overlap posts */
-    }
+       .app-container {
+        width: 100%;
+        max-width: 1200px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        /* Add top padding equal to (or slightly more than) the header height */
+        padding-top: 70px; /* Adjust this value as needed */
+      }
   }
   
   /* ---------------------------------- */
