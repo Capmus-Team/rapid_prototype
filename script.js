@@ -29,7 +29,8 @@ const categoryColors = {
   let currentPhotoIndex = 0;
   let selectedCategory = "";
   
-  // Sample posts data with random createdAt values and two posts with no photos.
+  // Sample posts data with random createdAt values in the format "Day, Mon DD, YYYY hh:mm AM/PM"
+  // Also added two sample posts (id 12 and 13) with no photos.
   const posts = [
     {
       id: 1,
@@ -294,13 +295,16 @@ const categoryColors = {
       const card = document.createElement("div");
       card.className = "post-card";
       
-      // If the post has photos, display the first one; otherwise, use the post description
       let photoHtml = "";
+      let previewText = "";
       if (post.photos && post.photos.length > 0) {
+        // If there are photos, display the first one and a preview of the description
         photoHtml = `<img src="${post.photos[0]}" alt="${post.title}" />`;
+        previewText = post.description.substring(0, 60) + "...";
       } else {
-        // Instead of a simple placeholder, display the post description text in the "photo" area
+        // If no photos, display the post description in the photo area and leave preview blank
         photoHtml = `<div class="post-body-text">${post.description}</div>`;
+        previewText = "";
       }
     
       card.innerHTML = `
@@ -316,7 +320,7 @@ const categoryColors = {
         </span>
         <p class="post-price">${post.price}</p>
         <p class="post-time-ago">${post.time_ago}</p>
-        <p>${post.description.substring(0, 60)}...</p>
+        <p class="post-preview">${previewText}</p>
       `;
     
       const wishlistIcon = card.querySelector('.wishlist-icon');
