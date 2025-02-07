@@ -26,20 +26,142 @@
         flex-direction: column;
       }
       /* Header Styling */
-      header {
+      /* header {
         background: #1A3771;
         padding: 20px;
-        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; 
         color: #fff;
       }
+      
       header h1 {
         font-size: 2rem;
-        margin-bottom: 5px;
+        margin-bottom: 2px; 
       }
+      
       header p {
         font-size: 1rem;
         opacity: 0.9;
-      }
+        margin: 0; 
+      } */
+
+      /* HEADER LAYOUT */
+
+      /* Site header container */
+.site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff; /* or your preferred color */
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  /* Left side: logo */
+  .header-left .logo {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1A3771;
+  }
+  
+  /* Center: search bar container */
+  .header-center {
+    flex: 1; /* allow the center to stretch */
+    display: flex;
+    justify-content: center;
+  }
+  
+  .header-search {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: #f7f7f7;
+    border-radius: 30px;
+    padding: 5px 15px;
+  }
+  
+  /* The search icon */
+  .header-search .search-icon {
+    color: #aaa;
+    margin-right: 5px;
+  }
+  
+  /* The search input field */
+  .header-search input {
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 1rem;
+    width: 250px; /* adjust as desired */
+  }
+  
+  /* Right side: "Create a post" + user menu */
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  /* Create post button or link */
+  .create-post-link {
+    text-decoration: none;
+    color: #222;
+    font-weight: 500;
+  }
+  
+  /* User menu container */
+  .user-menu-container {
+    position: relative;
+  }
+  
+  /* The combined hamburger + user icon button */
+  .menu-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #ccc;
+    background: #fff;
+    border-radius: 20px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .menu-button .material-icons {
+    color: #555;
+  }
+  
+  /* Dropdown menu (hidden by default) */
+  .dropdown-menu {
+    position: absolute;
+    top: 40px; /* below the button */
+    right: 0;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    display: none;
+    flex-direction: column;
+    min-width: 150px;
+    z-index: 999;
+  }
+  
+  .dropdown-menu a {
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-menu a:hover {
+    background-color: #f0f0f0;
+  }
+  
+  /* Show the dropdown when toggled by JavaScript */
+  .dropdown-menu.show {
+    display: flex;
+  }
+
       /* Category Bar (new) */
       .category-bar {
         display: flex;

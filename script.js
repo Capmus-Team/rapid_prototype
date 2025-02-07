@@ -172,6 +172,29 @@
   const leftArrow = document.getElementById('leftArrow');
   const rightArrow = document.getElementById('rightArrow');
 
+// Grab references to the user menu button and the dropdown
+const menuButton = document.getElementById('menuButton');
+const dropdownMenu = document.getElementById('dropdownMenu');
+
+/**
+ * Toggle the dropdown menu when the user clicks the button
+ */
+menuButton.addEventListener('click', (e) => {
+  // Don’t let the click bubble up (so it doesn’t close immediately)
+  e.stopPropagation();
+  dropdownMenu.classList.toggle('show');
+});
+
+/**
+ * If user clicks anywhere outside the dropdown, close it
+ */
+document.addEventListener('click', (e) => {
+  // If the click is not inside the dropdown or the button, close it
+  if (!dropdownMenu.contains(e.target) && e.target !== menuButton) {
+    dropdownMenu.classList.remove('show');
+  }
+});
+
   /**
    * Updates the modal image based on the currentPhotoIndex.
    */
