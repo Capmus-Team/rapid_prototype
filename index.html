@@ -63,49 +63,63 @@
         </div>
       </div> <!-- end .header-top-row -->
 
-      <!-- Second row: category icons (like Airbnb) -->
-      <div class="category-bar" id="categoryBar">
-        <div class="category-option active" data-category="">
-          <span class="material-icons">apps</span>
-          <p>All</p>
+      <!-- Second row: category icons (like Airbnb) + Filters button + scroll arrow -->
+      <div class="category-bar-wrapper">
+        <!-- The actual scrollable bar -->
+        <div class="category-bar" id="categoryBar">
+          <div class="category-option active" data-category="">
+            <span class="material-icons">apps</span>
+            <p>All</p>
+          </div>
+          <div class="category-option" data-category="housing">
+            <span class="material-icons">home</span>
+            <p>Housing</p>
+          </div>
+          <div class="category-option" data-category="for sale">
+            <span class="material-icons">local_offer</span>
+            <p>For Sale</p>
+          </div>
+          <div class="category-option" data-category="jobs">
+            <span class="material-icons">work</span>
+            <p>Jobs</p>
+          </div>
+          <div class="category-option" data-category="personals">
+            <span class="material-icons">person</span>
+            <p>Personals</p>
+          </div>
+          <div class="category-option" data-category="campus jobs">
+            <span class="material-icons">school</span>
+            <p>Campus Jobs</p>
+          </div>
+          <div class="category-option" data-category="community">
+            <span class="material-icons">group</span>
+            <p>Community</p>
+          </div>
+          <div class="category-option" data-category="services">
+            <span class="material-icons">build</span>
+            <p>Services</p>
+          </div>
+          <div class="category-option" data-category="events">
+            <span class="material-icons">events</span>
+            <p>Events</p>
+          </div>
+          <div class="category-option" data-category="resumes">
+            <span class="material-icons">description</span>
+            <p>Resumes</p>
+          </div>
+          <!-- The Filters button -->
+          <div class="filters-button" id="filtersButton">
+            <span class="material-icons">filter_list</span>
+            <p>Filters</p>
+          </div>
         </div>
-        <div class="category-option" data-category="housing">
-          <span class="material-icons">home</span>
-          <p>Housing</p>
+        
+        <!-- Right arrow for horizontal scrolling -->
+        <div class="category-scroll-arrow" id="categoryScrollArrow">
+          <span class="material-icons">chevron_right</span>
         </div>
-        <div class="category-option" data-category="for sale">
-          <span class="material-icons">local_offer</span>
-          <p>For Sale</p>
-        </div>
-        <div class="category-option" data-category="jobs">
-          <span class="material-icons">work</span>
-          <p>Jobs</p>
-        </div>
-        <div class="category-option" data-category="personals">
-          <span class="material-icons">person</span>
-          <p>Personals</p>
-        </div>
-        <div class="category-option" data-category="campus jobs">
-          <span class="material-icons">school</span>
-          <p>Campus Jobs</p>
-        </div>
-        <div class="category-option" data-category="community">
-          <span class="material-icons">group</span>
-          <p>Community</p>
-        </div>
-        <div class="category-option" data-category="services">
-          <span class="material-icons">build</span>
-          <p>Services</p>
-        </div>
-        <div class="category-option" data-category="events">
-          <span class="material-icons">events</span>
-          <p>Events</p>
-        </div>
-        <div class="category-option" data-category="resumes">
-          <span class="material-icons">description</span>
-          <p>Resumes</p>
-        </div>
-      </div>
+      </div> <!-- end .category-bar-wrapper -->
+
     </header>
     
     <!-- Posts Grid -->

@@ -450,3 +450,33 @@ document.addEventListener('click', (e) => {
     const xUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(postUrl)}`;
     window.open(xUrl, "_blank");
   });
+
+  // Grab references for the category bar & arrow
+const categoryBarEl = document.getElementById('categoryBar');
+const categoryScrollArrow = document.getElementById('categoryScrollArrow');
+
+// A function to check overflow and show/hide the arrow accordingly
+function updateCategoryBarArrow() {
+  // If the scrollable width is bigger than the visible width, we have overflow
+  if (categoryBarEl.scrollWidth > categoryBarEl.clientWidth) {
+    categoryScrollArrow.classList.add('show');
+  } else {
+    categoryScrollArrow.classList.remove('show');
+  }
+}
+
+// Scroll event handler: user might have scrolled with trackpad or something
+categoryBarEl.addEventListener('scroll', () => {
+  // You could hide the arrow if user reaches the end, etc. 
+  // For simplicity, let's keep it always if there's overflow.
+});
+
+// On arrow click, scroll the bar to the right
+categoryScrollArrow.addEventListener('click', () => {
+  // Scroll by 200px to the right (adjust as you like)
+  categoryBarEl.scrollBy({ left: 200, behavior: 'smooth' });
+});
+
+// Call updateCategoryBarArrow on page load (and maybe on window resize)
+window.addEventListener('load', updateCategoryBarArrow);
+window.addEventListener('resize', updateCategoryBarArrow);
