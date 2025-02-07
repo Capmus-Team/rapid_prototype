@@ -14,6 +14,8 @@
     href="https://fonts.googleapis.com/icon?family=Material+Icons"
     rel="stylesheet"
   />
+  <!-- Font Awesome CDN for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
   <style>
     /* Reset and Base Styles */
     * {
@@ -291,6 +293,37 @@
       .message-box button:hover {
         background-color: #2D5D98;
       }
+          /* Share Buttons */
+        .share-buttons {
+          margin-top: 20px;
+          display: flex;
+          gap: 10px;
+          align-items: center;
+          justify-content: flex-end;
+          margin-top: auto; /* Ensures it's placed at the end of the modal */
+        }
+
+        .share-buttons button {
+          background-color: #1A3771;
+          color: white;
+          padding: 10px 15px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          font-size: 1rem;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          transition: background-color 0.3s;
+        }
+
+        .share-buttons button:hover {
+          background-color: #2D5D98;
+        }
+
+        .share-buttons i {
+          font-size: 1.2rem;
+        }
   </style>
 </head>
 <body>
@@ -344,6 +377,18 @@
           <button type="submit">Send Message</button>
         </form>
       </div>
+      <!-- Share Buttons -->
+        <div class="share-buttons">
+          <button id="copyLinkButton">
+            <i class="fas fa-link"></i> Copy Link
+          </button>
+          <button id="facebookButton">
+            <i class="fab fa-facebook-f"></i> Facebook
+          </button>
+          <button id="xButton">
+            <i class="fab fa-twitter"></i> X
+          </button>
+        </div>
     </div>
   </div>
 
@@ -677,7 +722,30 @@
       if (e.key === "Escape") {
         closeModalFunction();
   }
-});
+    });
+          // Handle Copy Link Button
+      document.getElementById("copyLinkButton").addEventListener("click", function() {
+        const postUrl = window.location.href; // Get the current post URL
+        navigator.clipboard.writeText(postUrl).then(function() {
+          alert("Link copied to clipboard!");
+        }).catch(function(error) {
+          alert("Failed to copy the link.");
+        });
+      });
+
+      // Handle Facebook Share Button
+      document.getElementById("facebookButton").addEventListener("click", function() {
+        const postUrl = window.location.href;
+        const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(postUrl)}`;
+        window.open(facebookUrl, "_blank");
+      });
+
+      // Handle X Share Button
+      document.getElementById("xButton").addEventListener("click", function() {
+        const postUrl = window.location.href;
+        const xUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(postUrl)}`;
+        window.open(xUrl, "_blank");
+      });
 
   </script>
 </body>
