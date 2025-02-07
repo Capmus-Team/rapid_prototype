@@ -278,7 +278,7 @@ document.addEventListener('click', (e) => {
    */
   function renderPosts(textFilter = "") {
     postsGrid.innerHTML = "";
-  
+    
     const filteredPosts = posts.filter(post => {
       const matchesCategory = !selectedCategory || (post.category === selectedCategory);
       const matchesText =
@@ -286,17 +286,21 @@ document.addEventListener('click', (e) => {
         post.description.toLowerCase().includes(textFilter.toLowerCase());
       return matchesCategory && matchesText;
     });
-  
+    
     if (filteredPosts.length === 0) {
       postsGrid.innerHTML =
         "<p style='grid-column: 1 / -1; text-align: center;'>No posts found.</p>";
       return;
     }
-  
+    
     filteredPosts.forEach(post => {
       const card = document.createElement("div");
       card.className = "post-card";
+      // Insert the wishlist heart icon as the first element inside the card
       card.innerHTML = `
+        <div class="wishlist-icon">
+          <i class="fas fa-heart"></i>
+        </div>
         <img src="${post.photos[0]}" alt="${post.title}" />
         <h2>${post.title}</h2>
         <span class="post-category" style="background-color: ${categoryColors[post.category]};">
@@ -308,6 +312,27 @@ document.addEventListener('click', (e) => {
         <p class="post-time-ago">${post.time_ago}</p>
         <p>${post.description.substring(0, 60)}...</p>
       `;
+      
+      // Prevent clicks on the wishlist icon from triggering the post modal
+      const wishlistIcon = card.querySelector('.wishlist-icon');
+      wishlistIcon.addEventListener("click", (e) => {
+        e.stopPropagation();
+        // Create a temporary message element
+        const messageEl = document.createElement("div");
+        messageEl.className = "wishlist-message";
+        messageEl.innerText = "Saved post to wishlist.";
+        card.appendChild(messageEl);
+        
+        // Remove the message after 2 seconds with a fade-out effect
+        setTimeout(() => {
+          messageEl.style.opacity = 0;
+          setTimeout(() => {
+            messageEl.remove();
+          }, 500);
+        }, 2000);
+      });
+      
+      // Clicking anywhere else on the card shows post details
       card.addEventListener("click", () => showPostDetails(post.id));
       postsGrid.appendChild(card);
     });
