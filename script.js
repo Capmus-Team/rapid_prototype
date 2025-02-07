@@ -41,6 +41,7 @@
       description: "Great condition, used for one year. Pickup on campus.",
       price: "$100",
       time_ago: "5 secs",
+      createdAt: "Thu, Feb 06, 2025 08:11 PM",
       photos: [
         "https://plus.unsplash.com/premium_photo-1678718713393-2b88cde9605b?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3",
         "https://images.unsplash.com/photo-1611095564985-0660f731e732?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3"
@@ -53,6 +54,7 @@
       description: "Looking for a roommate near campus. Spacious room with great amenities.",
       price: "$800/mo",
       time_ago: "1 min",
+      createdAt: "Fri, Mar 14, 2025 09:23 AM",
       photos: [
         "https://media.istockphoto.com/id/1010132614/photo/excited-woman-receiving-a-gift-from-a-friend.jpg?s=1024x1024&w=is&k=20&c=sll2rqzjuvnMnu0Uw8d8nLRffIDD7ixL2c2ScpKOfDs=",
         "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=1024&auto=format&fit=crop&ixlib=rb-4.0.3"
@@ -65,6 +67,7 @@
       description: "Intro to Algorithms in excellent condition. No highlights or marks.",
       price: "$30",
       time_ago: "5 mins",
+      createdAt: "Sat, Apr 12, 2025 02:45 PM",
       photos: [
         "https://images.unsplash.com/photo-1588912914017-923900a34710?q=80&w=3019&auto=format&fit=crop&ixlib=rb-4.0.3",
         "https://images.unsplash.com/photo-1551024601-bec78aea704b?q=80&w=3019&auto=format&fit=crop&ixlib=rb-4.0.3"
@@ -77,6 +80,7 @@
       description: "Selling a set of dorm furniture including a bed, desk, and chair.",
       price: "$150",
       time_ago: "4 hrs",
+      createdAt: "Sun, May 04, 2025 11:05 AM",
       photos: [
         "https://images.unsplash.com/photo-1486946255434-2466348c2166?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3",
         "https://images.unsplash.com/photo-1588854337111-0232f7283e34?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3"
@@ -89,6 +93,7 @@
       description: "Offering beginner guitar lessons at affordable rates. Flexible schedule.",
       price: "Starting at $20/hr",
       time_ago: "27 days",
+      createdAt: "Mon, Jun 16, 2025 03:30 PM",
       photos: [
         "https://plus.unsplash.com/premium_photo-1681396936891-ed738c53cb21?q=80&w=3088&auto=format&fit=crop&ixlib=rb-4.0.3",
         "https://images.unsplash.com/photo-1511376777868-611b54f68947?q=80&w=3088&auto=format&fit=crop&ixlib=rb-4.0.3"
@@ -101,6 +106,7 @@
       description: "Exciting internship in tech. Apply now for a rewarding experience.",
       price: "Competitive",
       time_ago: "8 months",
+      createdAt: "Tue, Jul 01, 2025 07:15 PM",
       photos: [
         "https://plus.unsplash.com/premium_photo-1661502996011-cbd328de50f2?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         "https://images.unsplash.com/photo-1581091215367-723d6a0a3b2f?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.0.3"
@@ -113,6 +119,7 @@
       description: "Join us for a community networking event. Connect with peers!",
       price: "Free",
       time_ago: "3 years",
+      createdAt: "Wed, Aug 20, 2025 10:10 AM",
       photos: [
         "https://plus.unsplash.com/premium_photo-1706061121025-4ea17e4d9d9a?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.0.3",
         "https://images.unsplash.com/photo-1516542076529-1ea3854896e4?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.0.3"
@@ -125,6 +132,7 @@
       description: "Looking for a study partner to tackle challenging courses together.",
       price: "N/A",
       time_ago: "10 mins",
+      createdAt: "Thu, Sep 11, 2025 06:50 PM",
       photos: [
         "https://images.unsplash.com/photo-1616428317393-acd93938b4fa?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3",
         "https://images.unsplash.com/photo-1593642634367-d91a135587b5?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3"
@@ -137,6 +145,7 @@
       description: "On-campus tutoring job available for knowledgeable students.",
       price: "$15/hr",
       time_ago: "45 secs",
+      createdAt: "Fri, Oct 03, 2025 08:00 AM",
       photos: [
         "https://media.istockphoto.com/id/170947812/photo/working-together.jpg?s=1024x1024&w=is&k=20&c=d4RiPJQDC1_ids2CgPfXl2pTj0qBf7OkSQSZqN_m1h8=",
         "https://images.unsplash.com/photo-1601015281167-111b5c8e67ea?q=80&w=1024&auto=format&fit=crop&ixlib=rb-4.0.3"
@@ -149,6 +158,7 @@
       description: "Join us for a glamorous business networking event with live music, cocktails, and gourmet hors d'oeuvres.",
       price: "Tickets: $50",
       time_ago: "3 days",
+      createdAt: "Sat, Nov 22, 2025 05:45 PM",
       photos: [
         "https://images.unsplash.com/photo-1518609878373-06d740f60d8b?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.0.3",
         "https://images.unsplash.com/photo-1519985176271-adb1088fa94c?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.0.3"
@@ -161,6 +171,7 @@
       description: "Professional resume showcasing a talented musician with years of performance and production experience. Available for gigs and collaborations.",
       price: "N/A",
       time_ago: "2 hrs",
+      createdAt: "Sun, Dec 07, 2025 12:05 PM",
       photos: [
         "https://images.unsplash.com/photo-1511376777868-611b54f68947?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.0.3",
         "https://images.unsplash.com/photo-1551446591-142875a901a1?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.0.3"
@@ -168,7 +179,6 @@
       category: "resumes"
     }
   ];
-
   // DOM elements
   const postsGrid = document.getElementById('postsGrid');
   const searchInput = document.getElementById('searchInput');
@@ -220,14 +230,13 @@ document.addEventListener('click', (e) => {
    */
   function openModal(post, updateHistory = true) {
     if (updateHistory) {
-      // Update the URL with a unique hash for the post.
       window.history.pushState({ postId: post.id }, '', `#post=${post.id}`);
     }
     // Set up the modal slider
     currentPhotos = post.photos;
     currentPhotoIndex = 0;
     updateModalPhoto();
-
+  
     // Title, category, price, description
     modalTitle.innerText = post.title;
     modalCategory.innerHTML = `
@@ -238,10 +247,15 @@ document.addEventListener('click', (e) => {
     modalCategory.style.backgroundColor = categoryColors[post.category] || '#000';
     modalCategory.style.color = '#fff';
     modalPrice.innerText = `Price: ${post.price}`;
+    
+    // NEW: Set the created date/time
+    const modalCreatedAt = document.getElementById('modalCreatedAt');
+    modalCreatedAt.innerText = `Created on: ${post.createdAt}`;
+    
     modalDescription.innerText = post.description;
-
+  
     postModal.classList.add("active");
-
+  
     // Show or hide arrows depending on number of photos
     if (currentPhotos.length > 1) {
       leftArrow.style.display = "block";

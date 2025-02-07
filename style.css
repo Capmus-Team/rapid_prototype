@@ -714,3 +714,9 @@
       .share-buttons i {
         font-size: 1.2rem;
       }
+
+      .created-at {
+        font-size: 0.9rem;
+        color: #555;
+        margin-bottom: 15px;
+      }
