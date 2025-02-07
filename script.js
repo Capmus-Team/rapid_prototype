@@ -480,3 +480,17 @@ categoryScrollArrow.addEventListener('click', () => {
 // Call updateCategoryBarArrow on page load (and maybe on window resize)
 window.addEventListener('load', updateCategoryBarArrow);
 window.addEventListener('resize', updateCategoryBarArrow);
+
+function updateCategoryBarArrow() {
+    const categoryBarEl = document.getElementById('categoryBar');
+    const categoryScrollArrow = document.getElementById('categoryScrollArrow');
+    // If the scrollable width is greater than the visible width, show the arrow
+    if (categoryBarEl.scrollWidth > categoryBarEl.clientWidth) {
+      categoryScrollArrow.classList.add('show');
+    } else {
+      categoryScrollArrow.classList.remove('show');
+    }
+  }
+  
+  window.addEventListener('load', updateCategoryBarArrow);
+  window.addEventListener('resize', updateCategoryBarArrow);

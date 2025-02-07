@@ -26,25 +26,6 @@
         flex-direction: column;
       }
       /* Header Styling */
-      /* header {
-        background: #1A3771;
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start; 
-        color: #fff;
-      }
-      
-      header h1 {
-        font-size: 2rem;
-        margin-bottom: 2px; 
-      }
-      
-      header p {
-        font-size: 1rem;
-        opacity: 0.9;
-        margin: 0; 
-      } */
 
       /* HEADER LAYOUT */
 
@@ -294,42 +275,75 @@
 
 /* The category bar is now inside the header, below the top row. */
 /* The wrapper that encloses the scrollable bar + the right arrow */
+/* The wrapper remains the same */
+/* Category Bar Wrapper using flex to separate the scrollable area from the filters button */
 .category-bar-wrapper {
-    position: relative; /* so we can position arrow absolutely within it */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     background: #f7f7f7;
+    padding: 10px 20px;
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
-    padding-right: 40px; /* leave space for the arrow if it overlays */
   }
   
-  /* The scrollable category bar itself */
+  /* Container for the scrollable category bar and the arrow */
+  .category-bar-container {
+    position: relative;
+    flex: 1;
+    overflow: hidden; /* hide any overflow from the arrow */
+  }
+  
+  /* Scrollable category bar */
   .category-bar {
     display: flex;
     gap: 15px;
     overflow-x: auto;
-    overflow-y: hidden;
-    padding: 10px 20px; 
-    scrollbar-width: none; /* hide scrollbar in Firefox */
-    -ms-overflow-style: none; /* hide scrollbar in IE/Edge */
+    padding: 10px 0;
+    scrollbar-width: none;      /* Firefox */
+    -ms-overflow-style: none;   /* IE 10+ */
   }
   .category-bar::-webkit-scrollbar {
-    display: none; /* hide scrollbar in Chrome/Safari */
+    display: none;              /* Chrome, Safari, Opera */
   }
   
-  /* The "Filters" button in the category bar (similar style as category-option) */
+  /* Scroll arrow positioned at the right of the category-bar container */
+  .category-scroll-arrow {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    background: linear-gradient(to left, rgba(247,247,247,1), rgba(247,247,247,0));
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    /* Initially hidden; shown via JavaScript when needed */
+    display: none;
+  }
+  .category-scroll-arrow.show {
+    display: flex;
+  }
+  .category-scroll-arrow span.material-icons {
+    font-size: 24px;
+    color: #555;
+  }
+  
+  /* Filters button styled as a separate element */
   .filters-button {
-    flex: 0 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     padding: 8px 12px;
-    min-width: 80px;
     border: 2px solid transparent;
     border-radius: 30px;
     background-color: #fff;
     transition: background-color 0.3s, border-color 0.3s;
+    margin-left: 20px;
   }
   .filters-button:hover {
     background-color: #f0f4ff;
@@ -347,7 +361,7 @@
   }
   
   /* The arrow on the far right of the bar (chevron_right icon) */
-  .category-scroll-arrow {
+  /* .category-scroll-arrow {
     position: absolute;
     top: 50%;
     right: 0;
@@ -359,7 +373,6 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    /* Initially hidden; we'll show it in JS if needed. */
     visibility: hidden;
   }
   .category-scroll-arrow span.material-icons {
@@ -367,10 +380,9 @@
     color: #555;
   }
   
-  /* Show arrow if needed in JS: you can also do display: none -> display: flex */
   .category-scroll-arrow.show {
     visibility: visible;
-  }
+  } */
   
   /* (Rest of your existing CSS remains) */
   
