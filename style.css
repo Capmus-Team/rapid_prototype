@@ -360,31 +360,6 @@
     white-space: nowrap;
   }
   
-  /* The arrow on the far right of the bar (chevron_right icon) */
-  /* .category-scroll-arrow {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
-    background: linear-gradient(to left, rgba(255,255,255,1), rgba(255,255,255,0));
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    visibility: hidden;
-  }
-  .category-scroll-arrow span.material-icons {
-    font-size: 24px;
-    color: #555;
-  }
-  
-  .category-scroll-arrow.show {
-    visibility: visible;
-  } */
-  
-  /* (Rest of your existing CSS remains) */
   
   /* Category option styling remains the same. Example: */
   .category-option {
@@ -668,35 +643,50 @@
           width: 100%;
         }
       }
-      /* Message Box */
-      .message-box {
-        margin-top: 20px;
-      }
-      .message-box h3 {
-        font-size: 1.2rem;
-        color: #1A3771;
-        margin-bottom: 10px;
-      }
-      .message-box input,
-      .message-box textarea {
-        width: 100%;
-        padding: 10px;
-        border-radius: 8px;
-        border: 1px solid #ddd;
-        margin-bottom: 10px;
-      }
-      .message-box button {
-        background-color: #1A3771;
-        color: #fff;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-      }
-      .message-box button:hover {
-        background-color: #2D5D98;
-      }
-      /* Share Buttons */
+/* Message Box */
+.message-box {
+    margin-top: 20px;
+  }
+  
+  /* Layout the form inputs/labels vertically with consistent spacing */
+  .message-box form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Spacing around labels */
+  .message-box form label {
+    margin-bottom: 5px;
+    font-weight: 600; /* optional, if you want labels to stand out */
+    color: #555;
+  }
+  
+  /* Inputs and textarea with some consistent padding/margin */
+  .message-box input,
+  .message-box textarea {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    resize: vertical; /* let the textarea be resizable if you like */
+  }
+  
+  /* Space above the button so it doesn't crowd the last input */
+  .message-box button {
+    /* margin-top: 5px; */
+    margin-bottom: 10px;
+    background-color: #1A3771;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .message-box button:hover {
+    background-color: #2D5D98;
+  }      /* Share Buttons */
       .share-buttons {
         margin-top: 20px;
         display: flex;
