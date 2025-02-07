@@ -63,66 +63,63 @@
         </div>
       </div> <!-- end .header-top-row -->
 
-      <!-- Second row: category icons (like Airbnb) + Filters button + scroll arrow -->
-      <!-- Category Bar Wrapper -->
-<div class="category-bar-wrapper">
-  <!-- Container for the scrollable category bar and the scroll arrow -->
-  <div class="category-bar-container">
-    <div class="category-bar" id="categoryBar">
-      <div class="category-option active" data-category="">
-        <span class="material-icons">apps</span>
-        <p>All</p>
+      <!-- Second row: category icons + Filters button + scroll arrow -->
+      <div class="category-bar-wrapper">
+        <!-- Container for the scrollable category bar and the scroll arrow -->
+        <div class="category-bar-container">
+          <div class="category-bar" id="categoryBar">
+            <div class="category-option active" data-category="">
+              <span class="material-icons">apps</span>
+              <p>All</p>
+            </div>
+            <div class="category-option" data-category="housing">
+              <span class="material-icons">home</span>
+              <p>Housing</p>
+            </div>
+            <div class="category-option" data-category="for sale">
+              <span class="material-icons">local_offer</span>
+              <p>For Sale</p>
+            </div>
+            <div class="category-option" data-category="jobs">
+              <span class="material-icons">work</span>
+              <p>Jobs</p>
+            </div>
+            <div class="category-option" data-category="personals">
+              <span class="material-icons">person</span>
+              <p>Personals</p>
+            </div>
+            <div class="category-option" data-category="campus jobs">
+              <span class="material-icons">school</span>
+              <p>Campus Jobs</p>
+            </div>
+            <div class="category-option" data-category="community">
+              <span class="material-icons">group</span>
+              <p>Community</p>
+            </div>
+            <div class="category-option" data-category="services">
+              <span class="material-icons">build</span>
+              <p>Services</p>
+            </div>
+            <div class="category-option" data-category="events">
+              <span class="material-icons">events</span>
+              <p>Events</p>
+            </div>
+            <div class="category-option" data-category="resumes">
+              <span class="material-icons">description</span>
+              <p>Resumes</p>
+            </div>
+          </div>
+          <!-- Scroll arrow -->
+          <div class="category-scroll-arrow" id="categoryScrollArrow">
+            <span class="material-icons">chevron_right</span>
+          </div>
+        </div>
+        <!-- Filters button -->
+        <div class="filters-button" id="filtersButton">
+          <span class="material-icons">filter_list</span>
+          <p>Filters</p>
+        </div>
       </div>
-      <div class="category-option" data-category="housing">
-        <span class="material-icons">home</span>
-        <p>Housing</p>
-      </div>
-      <div class="category-option" data-category="for sale">
-        <span class="material-icons">local_offer</span>
-        <p>For Sale</p>
-      </div>
-      <div class="category-option" data-category="jobs">
-        <span class="material-icons">work</span>
-        <p>Jobs</p>
-      </div>
-      <div class="category-option" data-category="personals">
-        <span class="material-icons">person</span>
-        <p>Personals</p>
-      </div>
-      <div class="category-option" data-category="campus jobs">
-        <span class="material-icons">school</span>
-        <p>Campus Jobs</p>
-      </div>
-      <div class="category-option" data-category="community">
-        <span class="material-icons">group</span>
-        <p>Community</p>
-      </div>
-      <div class="category-option" data-category="services">
-        <span class="material-icons">build</span>
-        <p>Services</p>
-      </div>
-      <div class="category-option" data-category="events">
-        <span class="material-icons">events</span>
-        <p>Events</p>
-      </div>
-      <div class="category-option" data-category="resumes">
-        <span class="material-icons">description</span>
-        <p>Resumes</p>
-      </div>
-    </div>
-    <!-- Scroll arrow inside the container (will be shown via JS when needed) -->
-    <div class="category-scroll-arrow" id="categoryScrollArrow">
-      <span class="material-icons">chevron_right</span>
-    </div>
-  </div>
-  <!-- Filters button placed to the right of the scrollable category bar -->
-  <div class="filters-button" id="filtersButton">
-    <span class="material-icons">filter_list</span>
-    <p>Filters</p>
-  </div>
-</div>
-
-      
     </header>
     
     <!-- Posts Grid -->
@@ -131,7 +128,7 @@
     </div>
   </div>
 
-  <!-- Mobile Bottom Nav (shown only on small screens) -->
+  <!-- Mobile Bottom Nav -->
   <div class="mobile-bottom-nav">
     <a href="#" class="nav-item">
       <span class="material-icons">travel_explore</span>
@@ -147,42 +144,35 @@
     </a>
   </div>
 
-
   <!-- Modal for Post Details -->
   <div class="modal" id="postModal">
     <div class="modal-content">
       <span class="close-modal" id="closeModal">&times;</span>
-
       <!-- Title -->
       <h2 id="modalTitle"></h2>
-      <!-- Category label under the title -->
+      <!-- Category label -->
       <p class="modal-category" id="modalCategory"></p>
-      <!-- Price below category -->
+      <!-- Price -->
       <p class="price" id="modalPrice"></p>
+      <!-- Created At -->
       <p class="created-at" id="modalCreatedAt"></p>
-
-            <!-- Message Box -->
-            <div class="message-box">
-              <h3>Message</h3>
-              <form id="messageForm">
-                <textarea id="messageInput" placeholder="Write your message here..." required></textarea>
-                <input type="email" id="emailInput" placeholder="Enter your email" required />
-            
-                <button type="submit">Send Message</button>
-              </form>
-            </div>
-      
+      <!-- Message Box -->
+      <div class="message-box">
+        <h3>Message</h3>
+        <form id="messageForm">
+          <textarea id="messageInput" placeholder="Write your message here..." required></textarea>
+          <input type="email" id="emailInput" placeholder="Enter your email" required />
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
       <!-- Image Slider -->
       <div id="modalSlider">
         <img id="modalPhoto" src="" alt="Post Photo" />
         <div class="slider-arrow left" id="leftArrow">&#10094;</div>
         <div class="slider-arrow right" id="rightArrow">&#10095;</div>
       </div>
-
       <!-- Description -->
       <p id="modalDescription"></p>
-
-
       <!-- Share Buttons -->
       <div class="share-buttons">
         <button id="copyLinkButton">
@@ -198,8 +188,6 @@
     </div>
   </div>
 
-
-  <!-- Link to external JavaScript file -->
   <script src="script.js"></script>
 </body>
 </html>

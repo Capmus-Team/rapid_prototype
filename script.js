@@ -1,7 +1,5 @@
-// script.js
-
-  // Mapping for category colors
-  const categoryColors = {
+// Mapping for category colors
+const categoryColors = {
     "housing": "#4CAF50",
     "for sale": "#FF9800",
     "jobs": "#9C27B0",
@@ -12,7 +10,7 @@
     "events": "#283593",
     "resumes": "#263238"
   };
-
+  
   // Mapping for Material Icons
   const categoryIcons = {
     "housing": "home",
@@ -25,15 +23,14 @@
     "events": "event",
     "resumes": "description"
   };
-
-  // Global variables for the modal slider
+  
+  // Global variables for the modal slider and selected category
   let currentPhotos = [];
   let currentPhotoIndex = 0;
-
-  // Keep track of the currently selected category ("" means "All")
   let selectedCategory = "";
-
-  // Sample posts data with multiple photos
+  
+  // Sample posts data with random createdAt values in the format "Day, Mon DD, YYYY hh:mm AM/PM"
+  // Also added two sample posts (id 12 and 13) with no photos.
   const posts = [
     {
       id: 1,
@@ -177,8 +174,30 @@
         "https://images.unsplash.com/photo-1551446591-142875a901a1?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.0.3"
       ],
       category: "resumes"
+    },
+    // Sample posts with no photos:
+    {
+      id: 12,
+      title: "Used Textbooks Bundle",
+      description: "A bundle of used textbooks from last semester. Excellent condition and affordable.",
+      price: "$50",
+      time_ago: "2 days",
+      createdAt: "Mon, Jan 20, 2025 04:30 PM",
+      photos: [],
+      category: "for sale"
+    },
+    {
+      id: 13,
+      title: "Vintage Vinyl Records",
+      description: "A collection of vintage vinyl records. Great sound quality and rare finds.",
+      price: "$75",
+      time_ago: "5 hrs",
+      createdAt: "Tue, Feb 04, 2025 10:15 AM",
+      photos: [],
+      category: "for sale"
     }
   ];
+  
   // DOM elements
   const postsGrid = document.getElementById('postsGrid');
   const searchInput = document.getElementById('searchInput');
@@ -192,52 +211,33 @@
   const modalCategory = document.getElementById('modalCategory');
   const leftArrow = document.getElementById('leftArrow');
   const rightArrow = document.getElementById('rightArrow');
-
-// Grab references to the user menu button and the dropdown
-const menuButton = document.getElementById('menuButton');
-const dropdownMenu = document.getElementById('dropdownMenu');
-
-/**
- * Toggle the dropdown menu when the user clicks the button
- */
-menuButton.addEventListener('click', (e) => {
-  // Don’t let the click bubble up (so it doesn’t close immediately)
-  e.stopPropagation();
-  dropdownMenu.classList.toggle('show');
-});
-
-/**
- * If user clicks anywhere outside the dropdown, close it
- */
-document.addEventListener('click', (e) => {
-  // If the click is not inside the dropdown or the button, close it
-  if (!dropdownMenu.contains(e.target) && e.target !== menuButton) {
-    dropdownMenu.classList.remove('show');
-  }
-});
-
-  /**
-   * Updates the modal image based on the currentPhotoIndex.
-   */
+  
+  const menuButton = document.getElementById('menuButton');
+  const dropdownMenu = document.getElementById('dropdownMenu');
+  
+  // Toggle dropdown menu
+  menuButton.addEventListener('click', (e) => {
+    e.stopPropagation();
+    dropdownMenu.classList.toggle('show');
+  });
+  document.addEventListener('click', (e) => {
+    if (!dropdownMenu.contains(e.target) && e.target !== menuButton) {
+      dropdownMenu.classList.remove('show');
+    }
+  });
+  
   function updateModalPhoto() {
     modalPhoto.src = currentPhotos[currentPhotoIndex];
   }
-
-  /**
-   * Opens the modal for a given post.
-   * @param {Object} post - The post object.
-   * @param {boolean} updateHistory - If true, update the URL hash.
-   */
+  
   function openModal(post, updateHistory = true) {
     if (updateHistory) {
       window.history.pushState({ postId: post.id }, '', `#post=${post.id}`);
     }
-    // Set up the modal slider
     currentPhotos = post.photos;
     currentPhotoIndex = 0;
     updateModalPhoto();
   
-    // Title, category, price, description
     modalTitle.innerText = post.title;
     modalCategory.innerHTML = `
       <span class="material-icons" style="vertical-align: middle; margin-right: 4px;">
@@ -247,16 +247,14 @@ document.addEventListener('click', (e) => {
     modalCategory.style.backgroundColor = categoryColors[post.category] || '#000';
     modalCategory.style.color = '#fff';
     modalPrice.innerText = `Price: ${post.price}`;
-    
-    // NEW: Set the created date/time
+  
+    // Set the created date/time
     const modalCreatedAt = document.getElementById('modalCreatedAt');
     modalCreatedAt.innerText = `Created on: ${post.createdAt}`;
-    
-    modalDescription.innerText = post.description;
   
+    modalDescription.innerText = post.description;
     postModal.classList.add("active");
   
-    // Show or hide arrows depending on number of photos
     if (currentPhotos.length > 1) {
       leftArrow.style.display = "block";
       rightArrow.style.display = "block";
@@ -265,34 +263,21 @@ document.addEventListener('click', (e) => {
       rightArrow.style.display = "none";
     }
   }
-
-  /**
-   * Closes the modal and removes the post hash from the URL.
-   */
+  
   function closeModalFunction() {
     postModal.classList.remove("active");
     window.history.pushState({}, '', window.location.pathname + window.location.search);
   }
-
-  /**
-   * Show post details in a modal.
-   * @param {number} id - The ID of the post.
-   */
+  
   function showPostDetails(id) {
     const post = posts.find(p => p.id === id);
     if (post) {
       openModal(post, true);
     }
   }
-
-  /**
-   * Renders the posts into the grid, applying both the search filter
-   * and the currently selected category.
-   * @param {string} textFilter - The text to search in title and description.
-   */
+  
   function renderPosts(textFilter = "") {
     postsGrid.innerHTML = "";
-    
     const filteredPosts = posts.filter(post => {
       const matchesCategory = !selectedCategory || (post.category === selectedCategory);
       const matchesText =
@@ -300,22 +285,29 @@ document.addEventListener('click', (e) => {
         post.description.toLowerCase().includes(textFilter.toLowerCase());
       return matchesCategory && matchesText;
     });
-    
+  
     if (filteredPosts.length === 0) {
-      postsGrid.innerHTML =
-        "<p style='grid-column: 1 / -1; text-align: center;'>No posts found.</p>";
+      postsGrid.innerHTML = "<p style='grid-column: 1 / -1; text-align: center;'>No posts found.</p>";
       return;
     }
-    
+  
     filteredPosts.forEach(post => {
       const card = document.createElement("div");
       card.className = "post-card";
-      // Insert the wishlist heart icon as the first element inside the card
+      
+      // If the post has photos, display the first one; otherwise show a placeholder div
+      let photoHtml = "";
+      if (post.photos && post.photos.length > 0) {
+        photoHtml = `<img src="${post.photos[0]}" alt="${post.title}" />`;
+      } else {
+        photoHtml = `<div class="post-placeholder">No photo available. Additional details about the post are provided here to maintain card height.</div>`;
+      }
+  
       card.innerHTML = `
         <div class="wishlist-icon">
           <i class="fas fa-heart"></i>
         </div>
-        <img src="${post.photos[0]}" alt="${post.title}" />
+        ${photoHtml}
         <h2>${post.title}</h2>
         <span class="post-category" style="background-color: ${categoryColors[post.category]};">
           <span class="material-icons" style="vertical-align: middle; margin-right: 4px;">
@@ -326,18 +318,14 @@ document.addEventListener('click', (e) => {
         <p class="post-time-ago">${post.time_ago}</p>
         <p>${post.description.substring(0, 60)}...</p>
       `;
-      
-      // Prevent clicks on the wishlist icon from triggering the post modal
+  
       const wishlistIcon = card.querySelector('.wishlist-icon');
       wishlistIcon.addEventListener("click", (e) => {
         e.stopPropagation();
-        // Create a temporary message element
         const messageEl = document.createElement("div");
         messageEl.className = "wishlist-message";
         messageEl.innerText = "Saved post to wishlist.";
         card.appendChild(messageEl);
-        
-        // Remove the message after 2 seconds with a fade-out effect
         setTimeout(() => {
           messageEl.style.opacity = 0;
           setTimeout(() => {
@@ -345,14 +333,12 @@ document.addEventListener('click', (e) => {
           }, 500);
         }, 2000);
       });
-      
-      // Clicking anywhere else on the card shows post details
+  
       card.addEventListener("click", () => showPostDetails(post.id));
       postsGrid.appendChild(card);
     });
   }
-
-  // Arrow event listeners for slider
+  
   leftArrow.addEventListener("click", (e) => {
     e.stopPropagation();
     if (currentPhotoIndex > 0) {
@@ -362,7 +348,7 @@ document.addEventListener('click', (e) => {
     }
     updateModalPhoto();
   });
-
+  
   rightArrow.addEventListener("click", (e) => {
     e.stopPropagation();
     if (currentPhotoIndex < currentPhotos.length - 1) {
@@ -372,44 +358,30 @@ document.addEventListener('click', (e) => {
     }
     updateModalPhoto();
   });
-
-  // Close the modal when the close icon is clicked
+  
   closeModalEl.addEventListener("click", closeModalFunction);
-
-  // Close the modal when clicking outside the modal content
+  
   window.addEventListener("click", (e) => {
     if (e.target === postModal) {
       closeModalFunction();
     }
   });
-
-  // Filter posts as the user types
+  
   searchInput.addEventListener("input", (e) => {
     renderPosts(e.target.value);
   });
-
-  // Category bar click handling
+  
   categoryBar.addEventListener("click", (e) => {
-    // If the user clicked on a .category-option or inside it
     const categoryOption = e.target.closest('.category-option');
     if (!categoryOption) return;
-
-    // Remove active class from all category-option elements
     document.querySelectorAll('.category-option').forEach(el => {
       el.classList.remove('active');
     });
-
-    // Add active class to the clicked one
     categoryOption.classList.add('active');
-
-    // Update selectedCategory
     selectedCategory = categoryOption.dataset.category || "";
-
-    // Re-render the posts with the new category filter
     renderPosts(searchInput.value);
   });
-
-  // Listen for popstate events so that back/forward navigation opens/closes the modal
+  
   window.addEventListener("popstate", () => {
     if (window.location.hash.startsWith("#post=")) {
       const id = parseInt(window.location.hash.replace("#post=", ""), 10);
@@ -421,11 +393,9 @@ document.addEventListener('click', (e) => {
       postModal.classList.remove("active");
     }
   });
-
-  // Initial render of posts
+  
   renderPosts();
-
-  // On page load, check if there is a hash for a specific post
+  
   if (window.location.hash.startsWith("#post=")) {
     const id = parseInt(window.location.hash.replace("#post=", ""), 10);
     const post = posts.find(p => p.id === id);
@@ -433,15 +403,13 @@ document.addEventListener('click', (e) => {
       openModal(post, false);
     }
   }
-
-  // Close the modal when the Esc key is pressed
+  
   window.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
       closeModalFunction();
     }
   });
-
-  // Handle Copy Link Button
+  
   document.getElementById("copyLinkButton").addEventListener("click", function() {
     const postUrl = window.location.href;
     navigator.clipboard.writeText(postUrl).then(function() {
@@ -450,61 +418,35 @@ document.addEventListener('click', (e) => {
       alert("Failed to copy the link.");
     });
   });
-
-  // Handle Facebook Share Button
+  
   document.getElementById("facebookButton").addEventListener("click", function() {
     const postUrl = window.location.href;
     const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(postUrl)}`;
     window.open(facebookUrl, "_blank");
   });
-
-  // Handle X (Twitter) Share Button
+  
   document.getElementById("xButton").addEventListener("click", function() {
     const postUrl = window.location.href;
     const xUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(postUrl)}`;
     window.open(xUrl, "_blank");
   });
-
-  // Grab references for the category bar & arrow
-const categoryBarEl = document.getElementById('categoryBar');
-const categoryScrollArrow = document.getElementById('categoryScrollArrow');
-
-// A function to check overflow and show/hide the arrow accordingly
-function updateCategoryBarArrow() {
-  // If the scrollable width is bigger than the visible width, we have overflow
-  if (categoryBarEl.scrollWidth > categoryBarEl.clientWidth) {
-    categoryScrollArrow.classList.add('show');
-  } else {
-    categoryScrollArrow.classList.remove('show');
-  }
-}
-
-// Scroll event handler: user might have scrolled with trackpad or something
-categoryBarEl.addEventListener('scroll', () => {
-  // You could hide the arrow if user reaches the end, etc. 
-  // For simplicity, let's keep it always if there's overflow.
-});
-
-// On arrow click, scroll the bar to the right
-categoryScrollArrow.addEventListener('click', () => {
-  // Scroll by 200px to the right (adjust as you like)
-  categoryBarEl.scrollBy({ left: 200, behavior: 'smooth' });
-});
-
-// Call updateCategoryBarArrow on page load (and maybe on window resize)
-window.addEventListener('load', updateCategoryBarArrow);
-window.addEventListener('resize', updateCategoryBarArrow);
-
-function updateCategoryBarArrow() {
-    const categoryBarEl = document.getElementById('categoryBar');
-    const categoryScrollArrow = document.getElementById('categoryScrollArrow');
-    // If the scrollable width is greater than the visible width, show the arrow
+  
+  const categoryBarEl = document.getElementById('categoryBar');
+  const categoryScrollArrow = document.getElementById('categoryScrollArrow');
+  
+  function updateCategoryBarArrow() {
     if (categoryBarEl.scrollWidth > categoryBarEl.clientWidth) {
       categoryScrollArrow.classList.add('show');
     } else {
       categoryScrollArrow.classList.remove('show');
     }
   }
+  
+  categoryBarEl.addEventListener('scroll', () => {});
+  
+  categoryScrollArrow.addEventListener('click', () => {
+    categoryBarEl.scrollBy({ left: 200, behavior: 'smooth' });
+  });
   
   window.addEventListener('load', updateCategoryBarArrow);
   window.addEventListener('resize', updateCategoryBarArrow);
