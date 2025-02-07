@@ -50,20 +50,16 @@
 
       /* Site header container */
   /* Make the site-header a fixed top bar with flex layout */
-.site-header {
+  .site-header {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1000; /* Stays above other elements */
+    z-index: 1000;
+    display: flex;
+    flex-direction: column; /* Let the top row be one row, categories be second row */
     background: #fff;
     border-bottom: 1px solid #ddd;
-    padding: 10px 20px;
-  
-    /* The key for placing everything in one row */
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
   }
   
   /* Left part: show the logo inline */
@@ -73,24 +69,46 @@
     gap: 10px; /* optional spacing between items */
   }
   
-  /* Center part: the search bar remains in the center */
+
+/* Header top row: single row for the logo, search bar, create post, etc. */
+.header-top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    /* border-bottom: 1px solid #ddd; optional if you want a line between rows */
+  }
+  
+  /* The "Capmus" logo style (improved style) */
+  .logo {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;      /* bolder weight */
+    font-size: 1.8rem;     /* bigger font size */
+    letter-spacing: 0.5px; /* slight letter spacing */
+    color: #1A3771;        /* brand color */
+  }
+  
+  /* The center row for the search bar */
   .header-center {
-    flex: 1; /* so it stretches across remaining space */
+    flex: 1; /* let it stretch */
     display: flex;
     justify-content: center;
     align-items: center;
   }
   
-  /* Right part: "Create post" + user menu side by side */
+  /* The right row (create post + user menu) */
   .header-right {
     display: flex;
     align-items: center;
-    gap: 20px; /* spacing between the link and menu icon */
+    gap: 20px;
   }
   
-  /* Because the header is fixed, push your .app-container down to avoid overlap */
-  .app-container {
-    margin-top: 70px; /* adjust if you need more/less space */
+ /* Because the header is now potentially two rows tall, 
+   adjust the margin-top of .app-container or similar. 
+   If your .posts-grid is inside .app-container, do: */
+.app-container {
+    /* push content below the header */
+    margin-top: 120px; /* adjust as needed */
   }
   
   .header-search {
@@ -273,29 +291,33 @@
     display: flex;
   }
 
-      /* Category Bar (new) */
-      .category-bar {
-        display: flex;
-        gap: 15px;
-        overflow-x: auto; /* so it scrolls horizontally on smaller screens */
-        padding: 15px 20px;
-        background: #f7f7f7;
-        border-bottom: 1px solid #ddd;
-      }
-      .category-option {
-        flex: 0 0 auto; /* prevents shrinking */
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        padding: 8px 12px;
-        min-width: 80px;
-        border: 2px solid transparent;
-        border-radius: 30px;
-        background-color: #fff;
-        transition: background-color 0.3s, border-color 0.3s;
-      }
+
+/* The category bar is now inside the header, below the top row. */
+.category-bar {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    padding: 10px 20px; 
+    background: #f7f7f7;
+    border-top: 1px solid #ddd;  /* line above categories (optional) */
+    border-bottom: 1px solid #ddd;
+  }
+  
+  /* Category option styling remains the same. Example: */
+  .category-option {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 8px 12px;
+    min-width: 80px;
+    border: 2px solid transparent;
+    border-radius: 30px;
+    background-color: #fff;
+    transition: background-color 0.3s, border-color 0.3s;
+  }
       .category-option.active {
         border-color: #1A3771; /* highlight the active category */
         background-color: #e8edf7;

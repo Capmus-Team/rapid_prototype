@@ -6,7 +6,7 @@
   <title>Capmus Marketplace</title>
   <!-- Google Fonts -->
   <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
     rel="stylesheet"
   />
   <!-- Google Material Icons -->
@@ -19,102 +19,100 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     rel="stylesheet"
   />
-  <!-- Link to external CSS file (paste the styles below into style.css if you prefer an external file) -->
+  <!-- Link to external CSS file -->
   <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
   <div class="app-container">
     <!-- Header -->
     <header class="site-header">
-      <div class="header-left">
-        <!-- Logo / brand name -->
-        <div class="logo">Capmus</div>
-      </div>
-    
-      <div class="header-center">
-        <!-- Search bar -->
-        <div class="header-search">
-          <span class="material-icons search-icon">search</span>
-          <input type="text" id="searchInput" placeholder="Search posts..." />
+      <!-- First row: logo, search, create post, user menu -->
+      <div class="header-top-row">
+        <div class="header-left">
+          <!-- Logo / brand name -->
+          <div class="logo">Capmus</div>
         </div>
-      </div>
-    
-      <div class="header-right">
-        <!-- "Create a post" link/button -->
-        <a href="#" class="create-post-link">Create a post</a>
-    
-        <!-- User menu with hamburger + user icon -->
-        <div class="user-menu-container" id="userMenuContainer">
-          <!-- Button that toggles the dropdown -->
-          <button class="menu-button" id="menuButton">
-            <span class="material-icons">menu</span>
-            <span class="material-icons">account_circle</span>
-          </button>
-    
-          <!-- Dropdown that appears on click -->
-          <div class="dropdown-menu" id="dropdownMenu">
-            <a href="#">Sign up</a>
-            <a href="#">Login</a>
-            <a href="#">Help Center</a>
+        
+        <div class="header-center">
+          <!-- Search bar -->
+          <div class="header-search">
+            <span class="material-icons search-icon">search</span>
+            <input type="text" id="searchInput" placeholder="Search posts..." />
           </div>
+        </div>
+      
+        <div class="header-right">
+          <!-- "Create a post" link/button -->
+          <a href="#" class="create-post-link">Create a post</a>
+      
+          <!-- User menu with hamburger + user icon -->
+          <div class="user-menu-container" id="userMenuContainer">
+            <!-- Button that toggles the dropdown -->
+            <button class="menu-button" id="menuButton">
+              <span class="material-icons">menu</span>
+              <span class="material-icons">account_circle</span>
+            </button>
+            <!-- Dropdown that appears on click -->
+            <div class="dropdown-menu" id="dropdownMenu">
+              <a href="#">Sign up</a>
+              <a href="#">Login</a>
+              <a href="#">Help Center</a>
+            </div>
+          </div>
+        </div>
+      </div> <!-- end .header-top-row -->
+
+      <!-- Second row: category icons (like Airbnb) -->
+      <div class="category-bar" id="categoryBar">
+        <div class="category-option active" data-category="">
+          <span class="material-icons">apps</span>
+          <p>All</p>
+        </div>
+        <div class="category-option" data-category="housing">
+          <span class="material-icons">home</span>
+          <p>Housing</p>
+        </div>
+        <div class="category-option" data-category="for sale">
+          <span class="material-icons">local_offer</span>
+          <p>For Sale</p>
+        </div>
+        <div class="category-option" data-category="jobs">
+          <span class="material-icons">work</span>
+          <p>Jobs</p>
+        </div>
+        <div class="category-option" data-category="personals">
+          <span class="material-icons">person</span>
+          <p>Personals</p>
+        </div>
+        <div class="category-option" data-category="campus jobs">
+          <span class="material-icons">school</span>
+          <p>Campus Jobs</p>
+        </div>
+        <div class="category-option" data-category="community">
+          <span class="material-icons">group</span>
+          <p>Community</p>
+        </div>
+        <div class="category-option" data-category="services">
+          <span class="material-icons">build</span>
+          <p>Services</p>
+        </div>
+        <div class="category-option" data-category="events">
+          <span class="material-icons">events</span>
+          <p>Events</p>
+        </div>
+        <div class="category-option" data-category="resumes">
+          <span class="material-icons">description</span>
+          <p>Resumes</p>
         </div>
       </div>
     </header>
     
-    <!-- Category Filter Bar (like Airbnb) -->
-    <div class="category-bar" id="categoryBar">
-      <!-- "All" category to reset filters -->
-      <div class="category-option active" data-category="">
-        <span class="material-icons">apps</span>
-        <p>All</p>
-      </div>
-      <div class="category-option" data-category="housing">
-        <span class="material-icons">home</span>
-        <p>Housing</p>
-      </div>
-      <div class="category-option" data-category="for sale">
-        <span class="material-icons">local_offer</span>
-        <p>For Sale</p>
-      </div>
-      <div class="category-option" data-category="jobs">
-        <span class="material-icons">work</span>
-        <p>Jobs</p>
-      </div>
-      <div class="category-option" data-category="personals">
-        <span class="material-icons">person</span>
-        <p>Personals</p>
-      </div>
-      <div class="category-option" data-category="campus jobs">
-        <span class="material-icons">school</span>
-        <p>Campus Jobs</p>
-      </div>
-      <div class="category-option" data-category="community">
-        <span class="material-icons">group</span>
-        <p>Community</p>
-      </div>
-      <div class="category-option" data-category="services">
-        <span class="material-icons">build</span>
-        <p>Services</p>
-      </div>
-      <div class="category-option" data-category="events">
-        <span class="material-icons">events</span>
-        <p>Events</p>
-      </div>
-      <div class="category-option" data-category="resumes">
-        <span class="material-icons">description</span>
-        <p>Resumes</p>
-      </div>
-    </div>
-
-
     <!-- Posts Grid -->
     <div class="posts-grid" id="postsGrid">
       <!-- Post cards will be injected here by JavaScript -->
     </div>
   </div>
-
 
   <!-- Mobile Bottom Nav (shown only on small screens) -->
   <div class="mobile-bottom-nav">
