@@ -627,6 +627,13 @@
         openModal(post, false);
       }
     }
+    // Close the modal when the Esc key is pressed
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        closeModalFunction();
+  }
+});
+
   </script>
 </body>
 </html>
