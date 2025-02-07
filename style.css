@@ -1,0 +1,297 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #1A3771, #2D5D98);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  /* App Container */
+  .app-container {
+    width: 100%;
+    max-width: 1200px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  /* Header Styling */
+  header {
+    background: #1A3771;
+    padding: 20px;
+    text-align: center;
+    color: #fff;
+  }
+  header h1 {
+    font-size: 2rem;
+    margin-bottom: 5px;
+  }
+  header p {
+    font-size: 1rem;
+    opacity: 0.9;
+  }
+  /* Search Bar */
+  .search-bar {
+    padding: 20px;
+    text-align: center;
+    background: #f7f7f7;
+  }
+  .search-bar input {
+    width: 80%;
+    max-width: 500px;
+    padding: 10px 15px;
+    border: 2px solid #ddd;
+    border-radius: 30px;
+    font-size: 1rem;
+    outline: none;
+    transition: border 0.3s;
+  }
+  .search-bar input:focus {
+    border-color: #1A3771;
+  }
+  /* Posts Grid */
+  .posts-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 20px;
+  }
+  /* Medium viewports: 3 posts per row */
+  @media (min-width: 600px) {
+    .posts-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  /* Large viewports: 4 posts per row */
+  @media (min-width: 1024px) {
+    .posts-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  /* Extra-large viewports: 5 posts per row */
+  @media (min-width: 1440px) {
+    .posts-grid {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+  /* Ultra-large viewports: 6 posts per row */
+  @media (min-width: 1920px) {
+    .posts-grid {
+      grid-template-columns: repeat(6, 1fr);
+    }
+  }
+  .post-card {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  }
+  /* Post Image in Card */
+  .post-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  .post-card h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #1A3771;
+  }
+  .post-card p {
+    font-size: 0.95rem;
+    color: #555;
+  }
+  /* Category labels */
+  .post-category,
+  .modal-category {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .modal-category {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+  }
+  /* Modal Styles */
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    z-index: 100;
+  }
+  .modal.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  .modal-content {
+    background: #fff;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+    padding: 30px;
+    position: relative;
+    animation: fadeInUp 0.5s;
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
+  }
+  @keyframes fadeInUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  .close-modal {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 1.5rem;
+    color: #888;
+    cursor: pointer;
+  }
+  /* Modal Slider Styles */
+  #modalSlider {
+    position: relative;
+    margin-bottom: 15px;
+  }
+  #modalSlider img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  .slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    color: #1A3771;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
+  }
+  .slider-arrow.left {
+    left: 10px;
+  }
+  .slider-arrow.right {
+    right: 10px;
+  }
+  /* Modal Text Styles */
+  .modal-content h2 {
+    margin-bottom: 5px;
+    color: #1A3771;
+  }
+  .modal-content .price {
+    font-weight: 600;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    color: #000;
+  }
+  .modal-content p {
+    margin-bottom: 10px;
+    color: #555;
+  }
+  /* Responsive Adjustments */
+  @media (max-width: 600px) {
+    header h1 {
+      font-size: 1.5rem;
+    }
+    .search-bar input {
+      width: 100%;
+    }
+  }
+  /* Message Box */
+  .message-box {
+    margin-top: 20px;
+  }
+  .message-box h3 {
+    font-size: 1.2rem;
+    color: #1A3771;
+    margin-bottom: 10px;
+  }
+  .message-box input,
+  .message-box textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+  }
+  .message-box button {
+    background-color: #1A3771;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .message-box button:hover {
+    background-color: #2D5D98;
+  }
+  /* Share Buttons */
+  .share-buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: auto;
+  }
+  .share-buttons button {
+    background-color: #1A3771;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background-color 0.3s;
+  }
+  .share-buttons button:hover {
+    background-color: #2D5D98;
+  }
+  .share-buttons i {
+    font-size: 1.2rem;
+  }
