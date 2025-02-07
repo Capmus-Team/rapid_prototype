@@ -1,3 +1,4 @@
+// script.js
 
   // Mapping for category colors
   const categoryColors = {
