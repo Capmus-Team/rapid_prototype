@@ -1,5 +1,6 @@
-// Mapping for category colors
-const categoryColors = {
+
+  // Mapping for category colors
+  const categoryColors = {
     "housing": "#4CAF50",
     "for sale": "#FF9800",
     "jobs": "#9C27B0",
@@ -10,8 +11,8 @@ const categoryColors = {
     "event": "#283593",
     "resume": "#263238"
   };
-  
-  // Mapping for Material Icons (from Google Material Icons)
+
+  // Mapping for Material Icons
   const categoryIcons = {
     "housing": "home",
     "for sale": "local_offer",
@@ -23,12 +24,15 @@ const categoryColors = {
     "event": "event",
     "resume": "description"
   };
-  
+
   // Global variables for the modal slider
   let currentPhotos = [];
   let currentPhotoIndex = 0;
-  
-  // Sample posts data with multiple photos (an array for each post)
+
+  // Keep track of the currently selected category ("" means "All")
+  let selectedCategory = "";
+
+  // Sample posts data with multiple photos
   const posts = [
     {
       id: 1,
@@ -152,12 +156,13 @@ const categoryColors = {
       category: "resume"
     }
   ];
-  
-  // Get DOM elements
+
+  // DOM elements
   const postsGrid = document.getElementById('postsGrid');
   const searchInput = document.getElementById('searchInput');
+  const categoryBar = document.getElementById('categoryBar');
   const postModal = document.getElementById('postModal');
-  const closeModal = document.getElementById('closeModal');
+  const closeModalEl = document.getElementById('closeModal');
   const modalTitle = document.getElementById('modalTitle');
   const modalDescription = document.getElementById('modalDescription');
   const modalPrice = document.getElementById('modalPrice');
@@ -165,14 +170,14 @@ const categoryColors = {
   const modalCategory = document.getElementById('modalCategory');
   const leftArrow = document.getElementById('leftArrow');
   const rightArrow = document.getElementById('rightArrow');
-  
+
   /**
    * Updates the modal image based on the currentPhotoIndex.
    */
   function updateModalPhoto() {
     modalPhoto.src = currentPhotos[currentPhotoIndex];
   }
-  
+
   /**
    * Opens the modal for a given post.
    * @param {Object} post - The post object.
@@ -187,7 +192,7 @@ const categoryColors = {
     currentPhotos = post.photos;
     currentPhotoIndex = 0;
     updateModalPhoto();
-  
+
     // Title, category, price, description
     modalTitle.innerText = post.title;
     modalCategory.innerHTML = `
@@ -199,9 +204,9 @@ const categoryColors = {
     modalCategory.style.color = '#fff';
     modalPrice.innerText = `Price: ${post.price}`;
     modalDescription.innerText = post.description;
-  
+
     postModal.classList.add("active");
-  
+
     // Show or hide arrows depending on number of photos
     if (currentPhotos.length > 1) {
       leftArrow.style.display = "block";
@@ -211,7 +216,7 @@ const categoryColors = {
       rightArrow.style.display = "none";
     }
   }
-  
+
   /**
    * Closes the modal and removes the post hash from the URL.
    */
@@ -219,7 +224,7 @@ const categoryColors = {
     postModal.classList.remove("active");
     window.history.pushState({}, '', window.location.pathname + window.location.search);
   }
-  
+
   /**
    * Show post details in a modal.
    * @param {number} id - The ID of the post.
@@ -230,19 +235,34 @@ const categoryColors = {
       openModal(post, true);
     }
   }
-  
-  // Render posts into the grid (with optional text filter)
-  function renderPosts(filter = "") {
+
+  /**
+   * Renders the posts into the grid, applying both the search filter
+   * and the currently selected category.
+   * @param {string} textFilter - The text to search in title and description.
+   */
+  function renderPosts(textFilter = "") {
     postsGrid.innerHTML = "";
-    const filteredPosts = posts.filter(post =>
-      post.title.toLowerCase().includes(filter.toLowerCase()) ||
-      post.description.toLowerCase().includes(filter.toLowerCase())
-    );
+
+    // Filter logic:
+    //  1) If selectedCategory is "", we include all categories,
+    //     otherwise we only include posts matching the category.
+    //  2) We also filter by text (title or description).
+    const filteredPosts = posts.filter(post => {
+      const matchesCategory = !selectedCategory || (post.category === selectedCategory);
+      const matchesText = (
+        post.title.toLowerCase().includes(textFilter.toLowerCase()) ||
+        post.description.toLowerCase().includes(textFilter.toLowerCase())
+      );
+      return matchesCategory && matchesText;
+    });
+
     if (filteredPosts.length === 0) {
       postsGrid.innerHTML =
         "<p style='grid-column: 1 / -1; text-align: center;'>No posts found.</p>";
       return;
     }
+
     filteredPosts.forEach(post => {
       const card = document.createElement("div");
       card.className = "post-card";
@@ -261,7 +281,7 @@ const categoryColors = {
       postsGrid.appendChild(card);
     });
   }
-  
+
   // Arrow event listeners for slider
   leftArrow.addEventListener("click", (e) => {
     e.stopPropagation();
@@ -272,7 +292,7 @@ const categoryColors = {
     }
     updateModalPhoto();
   });
-  
+
   rightArrow.addEventListener("click", (e) => {
     e.stopPropagation();
     if (currentPhotoIndex < currentPhotos.length - 1) {
@@ -282,22 +302,43 @@ const categoryColors = {
     }
     updateModalPhoto();
   });
-  
+
   // Close the modal when the close icon is clicked
-  closeModal.addEventListener("click", closeModalFunction);
-  
+  closeModalEl.addEventListener("click", closeModalFunction);
+
   // Close the modal when clicking outside the modal content
   window.addEventListener("click", (e) => {
     if (e.target === postModal) {
       closeModalFunction();
     }
   });
-  
+
   // Filter posts as the user types
   searchInput.addEventListener("input", (e) => {
     renderPosts(e.target.value);
   });
-  
+
+  // Category bar click handling
+  categoryBar.addEventListener("click", (e) => {
+    // If the user clicked on a .category-option or inside it
+    const categoryOption = e.target.closest('.category-option');
+    if (!categoryOption) return;
+
+    // Remove active class from all category-option elements
+    document.querySelectorAll('.category-option').forEach(el => {
+      el.classList.remove('active');
+    });
+
+    // Add active class to the clicked one
+    categoryOption.classList.add('active');
+
+    // Update selectedCategory
+    selectedCategory = categoryOption.dataset.category || "";
+
+    // Re-render the posts with the new category filter
+    renderPosts(searchInput.value);
+  });
+
   // Listen for popstate events so that back/forward navigation opens/closes the modal
   window.addEventListener("popstate", () => {
     if (window.location.hash.startsWith("#post=")) {
@@ -310,10 +351,10 @@ const categoryColors = {
       postModal.classList.remove("active");
     }
   });
-  
+
   // Initial render of posts
   renderPosts();
-  
+
   // On page load, check if there is a hash for a specific post
   if (window.location.hash.startsWith("#post=")) {
     const id = parseInt(window.location.hash.replace("#post=", ""), 10);
@@ -322,32 +363,32 @@ const categoryColors = {
       openModal(post, false);
     }
   }
-  
+
   // Close the modal when the Esc key is pressed
   window.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
       closeModalFunction();
     }
   });
-  
+
   // Handle Copy Link Button
   document.getElementById("copyLinkButton").addEventListener("click", function() {
     const postUrl = window.location.href;
     navigator.clipboard.writeText(postUrl).then(function() {
       alert("Link copied to clipboard!");
-    }).catch(function(error) {
+    }).catch(function() {
       alert("Failed to copy the link.");
     });
   });
-  
+
   // Handle Facebook Share Button
   document.getElementById("facebookButton").addEventListener("click", function() {
     const postUrl = window.location.href;
     const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(postUrl)}`;
     window.open(facebookUrl, "_blank");
   });
-  
-  // Handle X Share Button
+
+  // Handle X (Twitter) Share Button
   document.getElementById("xButton").addEventListener("click", function() {
     const postUrl = window.location.href;
     const xUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(postUrl)}`;

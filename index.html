@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Capmus Marketplace</title>
   <!-- Google Fonts -->
   <link
@@ -19,9 +19,11 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     rel="stylesheet"
   />
-  <!-- Link to external CSS file -->
+  <!-- Link to external CSS file (paste the styles below into style.css if you prefer an external file) -->
   <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
   <div class="app-container">
     <!-- Header -->
@@ -29,10 +31,57 @@
       <h1>Capmus</h1>
       <p>Sell your stuff.</p>
     </header>
+
+    <!-- Category Filter Bar (like Airbnb) -->
+    <div class="category-bar" id="categoryBar">
+      <!-- "All" category to reset filters -->
+      <div class="category-option active" data-category="">
+        <span class="material-icons">apps</span>
+        <p>All</p>
+      </div>
+      <div class="category-option" data-category="housing">
+        <span class="material-icons">home</span>
+        <p>Housing</p>
+      </div>
+      <div class="category-option" data-category="for sale">
+        <span class="material-icons">local_offer</span>
+        <p>For Sale</p>
+      </div>
+      <div class="category-option" data-category="jobs">
+        <span class="material-icons">work</span>
+        <p>Jobs</p>
+      </div>
+      <div class="category-option" data-category="personals">
+        <span class="material-icons">person</span>
+        <p>Personals</p>
+      </div>
+      <div class="category-option" data-category="campus job">
+        <span class="material-icons">school</span>
+        <p>Campus Job</p>
+      </div>
+      <div class="category-option" data-category="community">
+        <span class="material-icons">group</span>
+        <p>Community</p>
+      </div>
+      <div class="category-option" data-category="services">
+        <span class="material-icons">build</span>
+        <p>Services</p>
+      </div>
+      <div class="category-option" data-category="event">
+        <span class="material-icons">event</span>
+        <p>Event</p>
+      </div>
+      <div class="category-option" data-category="resume">
+        <span class="material-icons">description</span>
+        <p>Resume</p>
+      </div>
+    </div>
+
     <!-- Search Bar -->
     <div class="search-bar">
       <input type="text" id="searchInput" placeholder="Search posts..." />
     </div>
+
     <!-- Posts Grid -->
     <div class="posts-grid" id="postsGrid">
       <!-- Post cards will be injected here by JavaScript -->
@@ -60,6 +109,7 @@
 
       <!-- Description -->
       <p id="modalDescription"></p>
+
       <!-- Message Box -->
       <div class="message-box">
         <h3>Message Poster</h3>
@@ -73,6 +123,7 @@
           <button type="submit">Send Message</button>
         </form>
       </div>
+
       <!-- Share Buttons -->
       <div class="share-buttons">
         <button id="copyLinkButton">
@@ -87,6 +138,7 @@
       </div>
     </div>
   </div>
+
 
   <!-- Link to external JavaScript file -->
   <script src="script.js"></script>
