@@ -259,6 +259,38 @@
         width: 100%;
       }
     }
+          /* Message Box */
+      .message-box {
+        margin-top: 20px;
+      }
+
+      .message-box h3 {
+        font-size: 1.2rem;
+        color: #1A3771;
+        margin-bottom: 10px;
+      }
+
+      .message-box input,
+      .message-box textarea {
+        width: 100%;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        margin-bottom: 10px;
+      }
+
+      .message-box button {
+        background-color: #1A3771;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .message-box button:hover {
+        background-color: #2D5D98;
+      }
   </style>
 </head>
 <body>
@@ -299,6 +331,19 @@
 
       <!-- Description last -->
       <p id="modalDescription"></p>
+      <!-- Message Box -->
+      <div class="message-box">
+        <h3>Message Poster</h3>
+        <form id="messageForm">
+          <label for="emailInput">Your Email</label>
+          <input type="email" id="emailInput" placeholder="Enter your email" required />
+
+          <label for="messageInput">Message</label>
+          <textarea id="messageInput" placeholder="Write your message here..." required></textarea>
+
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
     </div>
   </div>
 
