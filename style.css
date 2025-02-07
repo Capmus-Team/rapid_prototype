@@ -568,7 +568,17 @@
         animation: fadeInUp 0.5s;
         max-height: calc(100vh - 60px);
         overflow-y: auto;
+
       }
+
+      /* Optionally also limit the image’s max-height so it doesn't dominate */
+#modalSlider img {
+    max-height: 40vh; /* or whatever limit you like */
+    object-fit: cover;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
       @keyframes fadeInUp {
         from {
           transform: translateY(20px);
