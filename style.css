@@ -13,7 +13,8 @@
     align-items: center;
     padding: 20px;
   }
-  
+
+
   /* App Container */
   .app-container {
     width: 100%;
@@ -26,7 +27,7 @@
     flex-direction: column;
     margin-top: 120px; /* Space for fixed header */
   }
-  
+
   /* Header Styling */
   .site-header {
     position: fixed;
@@ -39,7 +40,7 @@
     background: #fff;
     border-bottom: 1px solid #ddd;
   }
-  
+
   /* Header Top Row */
   .header-top-row {
     display: flex;
@@ -89,7 +90,7 @@
     color: #222;
     font-weight: 500;
   }
-  
+
   /* User Menu */
   .user-menu-container {
     position: relative;
@@ -132,7 +133,7 @@
   .dropdown-menu.show {
     display: flex;
   }
-  
+
   /* Mobile Bottom Nav */
   .mobile-bottom-nav {
     display: none;
@@ -164,7 +165,7 @@
     margin-top: 2px;
     color: #333;
   }
-  
+
   /* Category Bar Wrapper */
   .category-bar-wrapper {
     display: flex;
@@ -238,7 +239,7 @@
     text-transform: capitalize;
     white-space: nowrap;
   }
-  
+
   /* Category Option */
   .category-option {
     flex: 0 0 auto;
@@ -272,7 +273,7 @@
     text-transform: capitalize;
     white-space: nowrap;
   }
-  
+
   /* Search Bar */
   .search-bar {
     padding: 20px;
@@ -292,7 +293,7 @@
   .search-bar input:focus {
     border-color: #1A3771;
   }
-  
+
   /* Posts Grid */
   .posts-grid {
     display: grid;
@@ -320,7 +321,7 @@
       grid-template-columns: repeat(6, 1fr);
     }
   }
-  
+
   /* Post Card */
   .post-card {
     position: relative;
@@ -336,7 +337,7 @@
     transform: translateY(-5px);
     box-shadow: 0 6px 15px rgba(0,0,0,0.1);
   }
-  
+
   /* If a post has no photo, display its body text in the "photo area" */
   .post-body-text {
     width: 100%;
@@ -350,7 +351,7 @@
     text-align: center;
     font-size: 1rem;
   }
-  
+
   /* Post Image */
   .post-card img {
     width: 100%;
@@ -378,7 +379,7 @@
     color: #777;
     margin-bottom: 5px;
   }
-  
+
   /* Category Labels */
   .post-category,
   .modal-category {
@@ -394,7 +395,7 @@
     font-size: 0.9rem;
     margin-bottom: 15px;
   }
-  
+
   /* Modal Styles */
   .modal {
     position: fixed;
@@ -444,7 +445,7 @@
     color: #888;
     cursor: pointer;
   }
-  
+
   /* Modal Slider */
   #modalSlider {
     position: relative;
@@ -477,7 +478,7 @@
   .slider-arrow.right {
     right: 10px;
   }
-  
+
   /* Modal Text */
   .modal-content h2 {
     margin-bottom: 5px;
@@ -499,7 +500,7 @@
     color: #555;
     margin-bottom: 15px;
   }
-  
+
   /* Message Box */
   .message-box {
     margin-top: 20px;
@@ -534,7 +535,7 @@
   .message-box button:hover {
     background-color: #2D5D98;
   }
-  
+
   /* Share Buttons */
   .share-buttons {
     margin-top: 20px;
@@ -563,7 +564,7 @@
   .share-buttons i {
     font-size: 1.2rem;
   }
-  
+
   /* Wishlist Icon & Message */
   .wishlist-icon {
     position: absolute;
@@ -592,10 +593,10 @@
     opacity: 1;
     transition: opacity 0.5s ease-out;
   }
-  
+
   /* Responsive Adjustments */
   @media (max-width: 600px) {
-    .header-left, 
+    .header-left,
     .header-right {
       display: none;
     }
@@ -620,3 +621,36 @@
       display: none;
     }
   }
+
+  /* University Selection Styling */
+.university-selection-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+  background-color: #fff;
+  border-bottom: 1px solid #ccc;
+}
+
+.university-selection {
+  display: flex;
+  gap: 10px;
+}
+
+.university-option {
+  padding: 10px 20px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.university-option.active {
+  background-color: #1d3557;  /* Updated blue color */
+  color: white;
+}
+
+.university-option:hover {
+  background-color: #e0e0e0;
+}

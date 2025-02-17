@@ -454,3 +454,11 @@ const categoryColors = {
     
   window.addEventListener('load', updateCategoryBarArrow);
   window.addEventListener('resize', updateCategoryBarArrow);
+
+  const universityOptions = document.querySelectorAll('.university-option');
+universityOptions.forEach(option => {
+  option.addEventListener('click', () => {
+    universityOptions.forEach(option => option.classList.remove('active'));
+    option.classList.add('active');
+  });
+});
