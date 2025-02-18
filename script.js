@@ -472,3 +472,33 @@ universityOptions.forEach(option => {
     option.classList.add('active');
   });
 });
+
+// University bar arrow logic
+const universityBarEl = document.getElementById('universityBar');
+const universityScrollArrow = document.getElementById('universityScrollArrow');
+
+function updateUniversityBarArrow() {
+  if (universityBarEl.scrollWidth > universityBarEl.clientWidth) {
+    universityScrollArrow.classList.add('show');
+  } else {
+    universityScrollArrow.classList.remove('show');
+  }
+}
+
+universityBarEl.addEventListener('scroll', () => {
+  // Optionally, you could hide the arrow once user scrolls all the way
+  // if (universityBarEl.scrollLeft + universityBarEl.clientWidth >= universityBarEl.scrollWidth) {
+  //   universityScrollArrow.classList.remove('show');
+  // } else {
+  //   universityScrollArrow.classList.add('show');
+  // }
+});
+
+universityScrollArrow.addEventListener('click', () => {
+  // Scroll the university bar to the right
+  universityBarEl.scrollBy({ left: 200, behavior: 'smooth' });
+});
+
+// Run on load and on resize
+window.addEventListener('load', updateUniversityBarArrow);
+window.addEventListener('resize', updateUniversityBarArrow);

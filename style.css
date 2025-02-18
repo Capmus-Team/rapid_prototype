@@ -696,4 +696,80 @@ body {
   background-color: #e0e0e0;
 }
 
+
+/* University Bar Wrapper */
+.university-bar-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  padding: 5px 20px; /* Adjust as desired */
+  border-bottom: 1px solid #ccc;
+}
+
+/* Container that holds the scrollable bar + arrow */
+.university-bar-container {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* The scrollable row of university buttons */
+.university-bar {
+  display: flex;
+  gap: 10px;          /* Adjust spacing as desired */
+  overflow-x: auto;  
+  padding: 5px 0;    /* Adjust vertical padding */
+  scrollbar-width: none;           /* Hide scrollbar for Firefox */
+  -ms-overflow-style: none;        /* Hide scrollbar for IE/Edge */
+}
+.university-bar::-webkit-scrollbar {
+  display: none;                 /* Hide scrollbar for Chrome/Safari */
+}
+
+/* Each university button styling */
+.university-option {
+  flex: 0 0 auto;
+  padding: 8px 16px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  white-space: nowrap;  /* Prevent text from wrapping */
+}
+
+.university-option.active {
+  background-color: #1d3557;
+  color: white;
+}
+.university-option:hover {
+  background-color: #e0e0e0;
+}
+
+/* The scroll arrow on the right side */
+.university-scroll-arrow {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  background: linear-gradient(to left, rgba(255,255,255,1), rgba(255,255,255,0));
+  width: 40px;
+  height: 40px;
+  display: none;          /* Hidden by default */
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1;            /* So it appears above the bar */
+}
+.university-scroll-arrow.show {
+  display: flex;         /* Shown when there's overflow */
+}
+.university-scroll-arrow span.material-icons {
+  font-size: 24px;
+  color: #555;
+}
+
+
 /* Category Colors and Icons Mapping (JavaScript remains unchanged) */
