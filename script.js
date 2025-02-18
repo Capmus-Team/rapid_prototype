@@ -43,7 +43,8 @@ const categoryColors = {
         "https://plus.unsplash.com/premium_photo-1678718713393-2b88cde9605b?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3",
         "https://images.unsplash.com/photo-1611095564985-0660f731e732?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3"
       ],
-      category: "for sale"
+      category: "for sale", 
+      universityEmailDomain: "@stanford.edu"
     },
     {
       id: 2,
@@ -56,7 +57,9 @@ const categoryColors = {
         "https://media.istockphoto.com/id/1010132614/photo/excited-woman-receiving-a-gift-from-a-friend.jpg?s=1024x1024&w=is&k=20&c=sll2rqzjuvnMnu0Uw8d8nLRffIDD7ixL2c2ScpKOfDs=",
         "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=1024&auto=format&fit=crop&ixlib=rb-4.0.3"
       ],
-      category: "housing"
+      category: "housing",
+      universityEmailDomain: "@harvard.edu"
+
     },
     {
       id: 3,
@@ -69,7 +72,9 @@ const categoryColors = {
         "https://images.unsplash.com/photo-1588912914017-923900a34710?q=80&w=3019&auto=format&fit=crop&ixlib=rb-4.0.3",
         "https://images.unsplash.com/photo-1551024601-bec78aea704b?q=80&w=3019&auto=format&fit=crop&ixlib=rb-4.0.3"
       ],
-      category: "for sale"
+      category: "for sale",
+      universityEmailDomain: "@mit.edu"
+
     },
     {
       id: 4,
@@ -82,7 +87,8 @@ const categoryColors = {
         "https://images.unsplash.com/photo-1486946255434-2466348c2166?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3",
         "https://images.unsplash.com/photo-1588854337111-0232f7283e34?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3"
       ],
-      category: "for sale"
+      category: "for sale",
+      universityEmailDomain: "@stanford.edu"
     },
     {
       id: 5,
@@ -95,7 +101,8 @@ const categoryColors = {
         "https://plus.unsplash.com/premium_photo-1681396936891-ed738c53cb21?q=80&w=3088&auto=format&fit=crop&ixlib=rb-4.0.3",
         "https://images.unsplash.com/photo-1511376777868-611b54f68947?q=80&w=3088&auto=format&fit=crop&ixlib=rb-4.0.3"
       ],
-      category: "services"
+      category: "services",
+      universityEmailDomain: "@stanford.edu"
     },
     {
       id: 6,
@@ -108,7 +115,8 @@ const categoryColors = {
         "https://plus.unsplash.com/premium_photo-1661502996011-cbd328de50f2?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         "https://images.unsplash.com/photo-1581091215367-723d6a0a3b2f?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.0.3"
       ],
-      category: "jobs"
+      category: "jobs",
+      universityEmailDomain: "@stanford.edu"
     },
     {
       id: 7,
@@ -121,7 +129,8 @@ const categoryColors = {
         "https://plus.unsplash.com/premium_photo-1706061121025-4ea17e4d9d9a?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.0.3",
         "https://images.unsplash.com/photo-1516542076529-1ea3854896e4?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.0.3"
       ],
-      category: "community"
+      category: "community",
+      universityEmailDomain: "@stanford.edu"
     },
     {
       id: 8,
@@ -134,7 +143,8 @@ const categoryColors = {
         "https://images.unsplash.com/photo-1616428317393-acd93938b4fa?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3",
         "https://images.unsplash.com/photo-1593642634367-d91a135587b5?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3"
       ],
-      category: "personals"
+      category: "personals",
+      universityEmailDomain: "@stanford.edu"
     },
     {
       id: 9,
@@ -147,7 +157,8 @@ const categoryColors = {
         "https://media.istockphoto.com/id/170947812/photo/working-together.jpg?s=1024x1024&w=is&k=20&c=d4RiPJQDC1_ids2CgPfXl2pTj0qBf7OkSQSZqN_m1h8=",
         "https://images.unsplash.com/photo-1601015281167-111b5c8e67ea?q=80&w=1024&auto=format&fit=crop&ixlib=rb-4.0.3"
       ],
-      category: "campus jobs"
+      category: "campus jobs",
+      universityEmailDomain: "@stanford.edu"
     },
     {
       id: 10,
@@ -160,7 +171,8 @@ const categoryColors = {
         "https://images.unsplash.com/photo-1518609878373-06d740f60d8b?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.0.3",
         "https://images.unsplash.com/photo-1519985176271-adb1088fa94c?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.0.3"
       ],
-      category: "events"
+      category: "events",
+      universityEmailDomain: "@stanford.edu"
     },
     {
       id: 11,
@@ -173,7 +185,8 @@ const categoryColors = {
         "https://images.unsplash.com/photo-1511376777868-611b54f68947?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.0.3",
         "https://images.unsplash.com/photo-1551446591-142875a901a1?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.0.3"
       ],
-      category: "resumes"
+      category: "resumes",
+      universityEmailDomain: "@stanford.edu"
     },
     // Sample posts with no photos:
     {
@@ -184,7 +197,8 @@ const categoryColors = {
       time_ago: "2 days",
       createdAt: "Mon, Jan 20, 2025 04:30 PM",
       photos: [],
-      category: "for sale"
+      category: "for sale",
+      universityEmailDomain: "@stanford.edu"
     },
     {
       id: 13,
@@ -194,7 +208,8 @@ const categoryColors = {
       time_ago: "5 hrs",
       createdAt: "Tue, Feb 04, 2025 10:15 AM",
       photos: [],
-      category: "for sale"
+      category: "for sale",
+      universityEmailDomain: "@stanford.edu"
     }
   ];
     
@@ -237,21 +252,16 @@ const categoryColors = {
     currentPhotos = post.photos;
     currentPhotoIndex = 0;
     updateModalPhoto();
-    
+  
     modalTitle.innerText = post.title;
-    modalCategory.innerHTML = `
-      <span class="material-icons" style="vertical-align: middle; margin-right: 4px;">
-        ${categoryIcons[post.category]}
-      </span>${post.category}
-    `;
-    modalCategory.style.backgroundColor = categoryColors[post.category] || '#000';
-    modalCategory.style.color = '#fff';
+    // ...
     modalPrice.innerText = `Price: ${post.price}`;
-    
-    // Set the created date/time
-    const modalCreatedAt = document.getElementById('modalCreatedAt');
     modalCreatedAt.innerText = `Created on: ${post.createdAt}`;
-    
+  
+    // Set the university email domain:
+    const modalEmail = document.getElementById('modalEmail');
+    modalEmail.innerText = `${post.universityEmailDomain}`;
+  
     modalDescription.innerText = post.description;
     postModal.classList.add("active");
     
@@ -285,28 +295,27 @@ const categoryColors = {
         post.description.toLowerCase().includes(textFilter.toLowerCase());
       return matchesCategory && matchesText;
     });
-    
+  
     if (filteredPosts.length === 0) {
       postsGrid.innerHTML = "<p style='grid-column: 1 / -1; text-align: center;'>No posts found.</p>";
       return;
     }
-    
+  
     filteredPosts.forEach(post => {
       const card = document.createElement("div");
       card.className = "post-card";
-      
+  
       let photoHtml = "";
       let previewText = "";
       if (post.photos && post.photos.length > 0) {
-        // If there are photos, display the first one and a preview of the description
         photoHtml = `<img src="${post.photos[0]}" alt="${post.title}" />`;
         previewText = post.description.substring(0, 60) + "...";
       } else {
-        // If no photos, display the post description in the photo area and leave preview blank
         photoHtml = `<div class="post-body-text">${post.description}</div>`;
         previewText = "";
       }
-    
+  
+      //  Add a paragraph for the university email domain
       card.innerHTML = `
         <div class="wishlist-icon">
           <i class="fas fa-heart"></i>
@@ -321,6 +330,7 @@ const categoryColors = {
         <p class="post-price">${post.price}</p>
         <p class="post-time-ago">${post.time_ago}</p>
         <p class="post-preview">${previewText}</p>
+        <p class="post-email"><strong>${post.universityEmailDomain}</strong></p>
       `;
     
       const wishlistIcon = card.querySelector('.wishlist-icon');
