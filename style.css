@@ -440,20 +440,23 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.6);
+  /* Increase the z-index to be higher than the header (z-index: 1000) */
+  z-index: 9999; 
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease;
-  z-index: 100;
 }
+
 .modal.active {
   opacity: 1;
   visibility: visible;
 }
 .modal-content {
+  margin-top: 20px; /* or padding-top: 20px; */
   background: #fff;
   border-radius: 10px;
   width: 90%;
@@ -464,6 +467,7 @@ body {
   max-height: calc(100vh - 60px);
   overflow-y: auto;
 }
+
 @keyframes fadeInUp {
   from {
     transform: translateY(20px);
