@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Capmus Marketplace</title>
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <!-- Google Material Icons -->
+  <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet"
+  />
+  <!-- Font Awesome CDN for icons -->
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    rel="stylesheet"
+  />
+  <!-- Link to external CSS file -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="site-header">
+      <!-- First row: logo, search, create post, user menu -->
+      <div class="header-top-row">
+        <div class="header-left">
+          <!-- Logo / brand name -->
+          <div class="logo">Capmus</div>
+        </div>
+
+        <div class="header-center">
+          <!-- Search bar -->
+          <div class="header-search">
+            <span class="material-icons search-icon">search</span>
+            <input type="text" id="searchInput" placeholder="Search posts..." />
+          </div>
+        </div>
+
+        <div class="header-right">
+          <!-- "Create a post" link/button -->
+          <a href="#" class="create-post-link">Create a post</a>
+
+          <!-- User menu with hamburger + user icon -->
+          <div class="user-menu-container" id="userMenuContainer">
+            <!-- Button that toggles the dropdown -->
+            <button class="menu-button" id="menuButton">
+              <span class="material-icons">menu</span>
+              <span class="material-icons">account_circle</span>
+            </button>
+            <!-- Dropdown that appears on click -->
+            <div class="dropdown-menu" id="dropdownMenu">
+              <a href="#">Sign up</a>
+              <a href="#">Login</a>
+              <a href="#">Help Center</a>
+            </div>
+          </div>
+        </div>
+      </div> <!-- end .header-top-row -->
+
+      <!-- University Selection Section -->
+<div class="university-selection-wrapper">
+  <div class="university-selection">
+    <span id="selectedUniversity">Santa Clara University</span>
+  </div>
+</div>
+
+
+
+      <!-- Second row: category icons + Filters button + scroll arrow -->
+      <div class="category-bar-wrapper">
+        <!-- Container for the scrollable category bar and the scroll arrow -->
+        <div class="category-bar-container">
+          <div class="category-bar" id="categoryBar">
+            <div class="category-option active" data-category="">
+              <span class="material-icons">apps</span>
+              <p>All</p>
+            </div>
+            <div class="category-option" data-category="housing">
+              <span class="material-icons">home</span>
+              <p>Housing</p>
+            </div>
+            <div class="category-option" data-category="for sale">
+              <span class="material-icons">local_offer</span>
+              <p>For Sale</p>
+            </div>
+            <div class="category-option" data-category="jobs">
+              <span class="material-icons">work</span>
+              <p>Jobs</p>
+            </div>
+            <div class="category-option" data-category="personals">
+              <span class="material-icons">person</span>
+              <p>Personals</p>
+            </div>
+            <div class="category-option" data-category="campus jobs">
+              <span class="material-icons">school</span>
+              <p>Campus Jobs</p>
+            </div>
+            <div class="category-option" data-category="community">
+              <span class="material-icons">group</span>
+              <p>Community</p>
+            </div>
+            <div class="category-option" data-category="services">
+              <span class="material-icons">build</span>
+              <p>Services</p>
+            </div>
+            <div class="category-option" data-category="events">
+              <span class="material-icons">events</span>
+              <p>Events</p>
+            </div>
+            <div class="category-option" data-category="resumes">
+              <span class="material-icons">description</span>
+              <p>Resumes</p>
+            </div>
+          </div>
+          <!-- Scroll arrow -->
+          <div class="category-scroll-arrow" id="categoryScrollArrow">
+            <span class="material-icons">chevron_right</span>
+          </div>
+        </div>
+        <!-- University Button (Dropdown Trigger) -->
+      <<div class="university-menu-container" id="universityMenuContainer">
+  <button class="menu-button" id="universityButton">
+    <span class="material-icons">apps</span> <!-- Add the grid icon here -->
+    <span class="university-text">University</span> <!-- Changed p to span -->
+  </button>
+  <!-- University Dropdown Menu -->
+  <div class="university-dropdown-menu" id="universityDropdownMenu">
+    <a href="#">Santa Clara University</a>
+    <a href="#">Stanford University</a>
+    <a href="#">UC Berkeley</a>
+    <a href="#">Harvard University</a>
+    <a href="#">Johns Hopkins University</a>
+  </div>
+</div>
+
+
+        <!-- Filters button -->
+        <div class="filters-button" id="filtersButton">
+          <span class="material-icons">filter_list</span>
+          <p>Filters</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Posts Grid -->
+    <div class="posts-grid" id="postsGrid">
+      <!-- Post cards will be injected here by JavaScript -->
+    </div>
+  </div>
+
+  <!-- Mobile Bottom Nav -->
+  <div class="mobile-bottom-nav">
+    <a href="#" class="nav-item">
+      <span class="material-icons">travel_explore</span>
+      <p>Explore</p>
+    </a>
+    <a href="#" class="nav-item">
+      <span class="material-icons">favorite_border</span>
+      <p>Wishlists</p>
+    </a>
+    <a href="#" class="nav-item">
+      <span class="material-icons">person</span>
+      <p>Log in</p>
+    </a>
+  </div>
+
+  <!-- Modal for Post Details -->
+  <div class="modal" id="postModal">
+    <div class="modal-content">
+      <span class="close-modal" id="closeModal">&times;</span>
+      <!-- Title -->
+      <h2 id="modalTitle"></h2>
+      <!-- Category label -->
+      <p class="modal-category" id="modalCategory"></p>
+      <!-- Price -->
+      <p class="price" id="modalPrice"></p>
+      <!-- Created At -->
+      <p class="created-at" id="modalCreatedAt"></p>
+      <!-- Message Box -->
+      <div class="message-box">
+        <h3>Message</h3>
+        <form id="messageForm">
+          <textarea id="messageInput" placeholder="Write your message here..." required></textarea>
+          <input type="email" id="emailInput" placeholder="Enter your email" required />
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+      <!-- Image Slider -->
+      <div id="modalSlider">
+        <img id="modalPhoto" src="" alt="Post Photo" />
+        <div class="slider-arrow left" id="leftArrow">&#10094;</div>
+        <div class="slider-arrow right" id="rightArrow">&#10095;</div>
+      </div>
+      <!-- Description -->
+      <p id="modalDescription"></p>
+      <!-- Share Buttons -->
+      <div class="share-buttons">
+        <button id="copyLinkButton">
+          <i class="fas fa-link"></i> Copy Link
+        </button>
+        <button id="facebookButton">
+          <i class="fab fa-facebook-f"></i> Facebook
+        </button>
+        <button id="xButton">
+          <i class="fab fa-twitter"></i> X
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+  <script>
+    // University selection logic
+    const universityOptions = document.querySelectorAll('.university-option');
+    const selectedUniversityButton = document.getElementById('selectedUniversity');
+
+    universityOptions.forEach(option => {
+      option.addEventListener('click', () => {
+        // Set the selected university as the text of the button
+        selectedUniversityButton.innerText = option.innerText;
+
+        // Remove the 'active' class from all other options
+        universityOptions.forEach(option => option.classList.remove('active'));
+
+        // Add the 'active' class to the clicked option
+        option.classList.add('active');
+
+        // Hide all other options (optional, depending on behavior you want)
+        universityOptions.forEach(opt => opt.style.display = 'none');
+      });
+    });
+  </script>
+</body>
+</html>
