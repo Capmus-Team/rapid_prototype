@@ -33,7 +33,7 @@
           <!-- Logo / brand name -->
           <div class="logo">Capmus</div>
         </div>
-        
+
         <div class="header-center">
           <!-- Search bar -->
           <div class="header-search">
@@ -41,11 +41,11 @@
             <input type="text" id="searchInput" placeholder="Search posts..." />
           </div>
         </div>
-      
+
         <div class="header-right">
           <!-- "Create a post" link/button -->
           <a href="#" class="create-post-link">Create a post</a>
-      
+
           <!-- User menu with hamburger + user icon -->
           <div class="user-menu-container" id="userMenuContainer">
             <!-- Button that toggles the dropdown -->
@@ -168,43 +168,41 @@
   <div class="modal-content">
     <span class="close-modal" id="closeModal">&times;</span>
     <h2 id="modalTitle"></h2>
-    <p class="modal-category" id="modalCategory"></p>
     <p class="price" id="modalPrice"></p>
     <p class="created-at" id="modalCreatedAt"></p>
-
-    <!-- University email line -->
     <p id="modalEmail"></p>
-      <!-- Message Box -->
-      <div class="message-box">
-        <h3>Message</h3>
-        <form id="messageForm">
-          <textarea id="messageInput" placeholder="Write your message here..." required></textarea>
-          <input type="email" id="emailInput" placeholder="Enter your email" required />
-          <button type="submit">Send Message</button>
-        </form>
-      </div>
-      <!-- Image Slider -->
-      <div id="modalSlider">
-        <img id="modalPhoto" src="" alt="Post Photo" />
-        <div class="slider-arrow left" id="leftArrow">&#10094;</div>
-        <div class="slider-arrow right" id="rightArrow">&#10095;</div>
-      </div>
-      <!-- Description -->
-      <p id="modalDescription"></p>
-      <!-- Share Buttons -->
-      <div class="share-buttons">
-        <button id="copyLinkButton">
-          <i class="fas fa-link"></i> Copy Link
-        </button>
-        <button id="facebookButton">
-          <i class="fab fa-facebook-f"></i> Facebook
-        </button>
-        <button id="xButton">
-          <i class="fab fa-twitter"></i> X
-        </button>
-      </div>
+    <!-- Message Box -->
+    <div class="message-box">
+      <h3>Message</h3>
+      <form id="messageForm">
+        <textarea id="messageInput" placeholder="Write your message here..." required></textarea>
+        <input type="email" id="emailInput" placeholder="Enter your email" required />
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+    <!-- Image Slider -->
+    <div id="modalSlider">
+      <img id="modalPhoto" src="" alt="Post Photo" />
+      <div class="slider-arrow left" id="leftArrow">&#10094;</div>
+      <div class="slider-arrow right" id="rightArrow">&#10095;</div>
+    </div>
+    <!-- Description -->
+    <p id="modalDescription"></p>
+    <!-- Share Buttons -->
+    <div class="share-buttons">
+      <button id="copyLinkButton">
+        <i class="fas fa-link"></i> Copy Link
+      </button>
+      <button id="facebookButton">
+        <i class="fab fa-facebook-f"></i> Facebook
+      </button>
+      <button id="xButton">
+        <i class="fab fa-twitter"></i> X
+      </button>
     </div>
   </div>
+</div>
+
 
   <script src="script.js"></script>
 </body>

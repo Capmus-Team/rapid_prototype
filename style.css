@@ -522,14 +522,18 @@ body {
 
 /* Modal Text */
 .modal-content h2 {
-  margin-bottom: 5px;
+ font-size: 1.6rem;
+  font-weight: 600;
   color: #1A3771;
+  text-align: left;
+  margin-bottom: 10px;
 }
 .modal-content .price {
   font-weight: 600;
   margin-top: 5px;
   margin-bottom: 20px;
   color: #000;
+    text-align: right;
 }
 .modal-content p {
   margin-bottom: 10px;
