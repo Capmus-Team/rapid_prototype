@@ -165,7 +165,7 @@ body {
   color: #333;
 }
 
-/* Category Bar Wrapper (unchanged or slightly adjusted if needed) */
+/* Category Bar Wrapper */
 .category-bar-wrapper {
   display: flex;
   align-items: center;
@@ -175,28 +175,22 @@ body {
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
 }
-
-/* Category Bar Container remains the same */
 .category-bar-container {
   position: relative;
   flex: 1;
   overflow: hidden;
 }
-
-/* Category Bar: Reduced vertical padding and gap between options */
 .category-bar {
   display: flex;
-  gap: 8px; /* Reduced gap */
+  gap: 8px;
   overflow-x: auto;
-  padding: 5px 0; /* Reduced vertical padding */
+  padding: 5px 0;
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
 .category-bar::-webkit-scrollbar {
   display: none;
 }
-
-/* Category Option: Tighter padding and reduced margin on icon */
 .category-option {
   flex: 0 0 auto;
   display: flex;
@@ -204,7 +198,7 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  padding: 4px 10px; /* Reduced padding */
+  padding: 4px 10px;
   min-width: 80px;
   border: 2px solid transparent;
   border-radius: 30px;
@@ -220,7 +214,7 @@ body {
 }
 .category-option span.material-icons {
   font-size: 24px;
-  margin-bottom: 3px; /* Reduced margin */
+  margin-bottom: 3px;
   color: #1A3771;
 }
 .category-option p {
@@ -277,60 +271,6 @@ body {
   white-space: nowrap;
 }
 
-/* Category Option */
-.category-option {
-  flex: 0 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  padding: 8px 12px;
-  min-width: 80px;
-  border: 2px solid transparent;
-  border-radius: 30px;
-  background-color: #fff;
-  transition: background-color 0.3s, border-color 0.3s;
-}
-.category-option.active {
-  border-color: #1A3771;
-  background-color: #e8edf7;
-}
-.category-option:hover {
-  background-color: #f0f4ff;
-}
-.category-option span.material-icons {
-  font-size: 24px;
-  margin-bottom: 5px;
-  color: #1A3771;
-}
-.category-option p {
-  color: #1A3771;
-  font-size: 0.8rem;
-  text-transform: capitalize;
-  white-space: nowrap;
-}
-
-/* Search Bar */
-.search-bar {
-  padding: 20px;
-  text-align: center;
-  background: #f7f7f7;
-}
-.search-bar input {
-  width: 80%;
-  max-width: 500px;
-  padding: 10px 15px;
-  border: 2px solid #ddd;
-  border-radius: 30px;
-  font-size: 1rem;
-  outline: none;
-  transition: border 0.3s;
-}
-.search-bar input:focus {
-  border-color: #1A3771;
-}
-
 /* Posts Grid */
 .posts-grid {
   display: grid;
@@ -378,7 +318,7 @@ body {
 /* If a post has no photo, display its body text in the "photo area" */
 .post-body-text {
   width: 100%;
-  height: 200px; /* same height as a normal photo */
+  height: 200px;
   background-color: #f9f9f9;
   color: #555;
   display: flex;
@@ -440,8 +380,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  /* Increase the z-index to be higher than the header (z-index: 1000) */
-  z-index: 9999; 
+  z-index: 9999;
   background: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
@@ -450,13 +389,12 @@ body {
   visibility: hidden;
   transition: opacity 0.3s ease;
 }
-
 .modal.active {
   opacity: 1;
   visibility: visible;
 }
 .modal-content {
-  margin-top: 20px; /* or padding-top: 20px; */
+  margin-top: 20px;
   background: #fff;
   border-radius: 10px;
   width: 90%;
@@ -467,7 +405,6 @@ body {
   max-height: calc(100vh - 60px);
   overflow-y: auto;
 }
-
 @keyframes fadeInUp {
   from {
     transform: translateY(20px);
@@ -535,7 +472,6 @@ body {
   margin-bottom: 10px;
   color: #555;
 }
-/* Created At */
 .created-at {
   font-size: 0.9rem;
   color: #555;
@@ -667,16 +603,14 @@ body {
 .university-selection-wrapper {
   display: flex;
   justify-content: center;
-  padding: 5px 0; /* Reduced vertical padding */
+  padding: 5px 0;
   background-color: #fff;
   border-bottom: 1px solid #ccc;
 }
-
 .university-selection {
   display: flex;
   gap: 10px;
 }
-
 .university-option {
   padding: 10px 20px;
   background-color: #f0f0f0;
@@ -686,16 +620,13 @@ body {
   cursor: pointer;
   transition: background-color 0.3s;
 }
-
 .university-option.active {
   background-color: #1d3557;
   color: white;
 }
-
 .university-option:hover {
   background-color: #e0e0e0;
 }
-
 
 /* University Bar Wrapper */
 .university-bar-wrapper {
@@ -703,31 +634,25 @@ body {
   align-items: center;
   justify-content: center;
   background: #fff;
-  padding: 5px 20px; /* Adjust as desired */
+  padding: 5px 20px;
   border-bottom: 1px solid #ccc;
 }
-
-/* Container that holds the scrollable bar + arrow */
 .university-bar-container {
   position: relative;
   flex: 1;
   overflow: hidden;
 }
-
-/* The scrollable row of university buttons */
 .university-bar {
   display: flex;
-  gap: 10px;          /* Adjust spacing as desired */
-  overflow-x: auto;  
-  padding: 5px 0;    /* Adjust vertical padding */
-  scrollbar-width: none;           /* Hide scrollbar for Firefox */
-  -ms-overflow-style: none;        /* Hide scrollbar for IE/Edge */
+  gap: 10px;
+  overflow-x: auto;
+  padding: 5px 0;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 .university-bar::-webkit-scrollbar {
-  display: none;                 /* Hide scrollbar for Chrome/Safari */
+  display: none;
 }
-
-/* Each university button styling */
 .university-option {
   flex: 0 0 auto;
   padding: 8px 16px;
@@ -737,9 +662,8 @@ body {
   font-size: 14px;
   cursor: pointer;
   transition: background-color 0.3s;
-  white-space: nowrap;  /* Prevent text from wrapping */
+  white-space: nowrap;
 }
-
 .university-option.active {
   background-color: #1d3557;
   color: white;
@@ -747,8 +671,6 @@ body {
 .university-option:hover {
   background-color: #e0e0e0;
 }
-
-/* The scroll arrow on the right side */
 .university-scroll-arrow {
   position: absolute;
   top: 50%;
@@ -757,19 +679,25 @@ body {
   background: linear-gradient(to left, rgba(255,255,255,1), rgba(255,255,255,0));
   width: 40px;
   height: 40px;
-  display: none;          /* Hidden by default */
+  display: none;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 1;            /* So it appears above the bar */
+  z-index: 1;
 }
 .university-scroll-arrow.show {
-  display: flex;         /* Shown when there's overflow */
+  display: flex;
 }
 .university-scroll-arrow span.material-icons {
   font-size: 24px;
   color: #555;
 }
 
-
-/* Category Colors and Icons Mapping (JavaScript remains unchanged) */
+/* The selected university text (shown after user picks) */
+.selected-university {
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 4px 0;
+  color: #1A3771;
+}

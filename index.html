@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Capmus Marketplace</title>
+  
   <!-- Google Fonts -->
   <link
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
@@ -19,8 +20,9 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     rel="stylesheet"
   />
+
   <!-- Link to external CSS file -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
@@ -63,24 +65,27 @@
         </div>
       </div> <!-- end .header-top-row -->
 
-<!-- University Bar Section -->
-<div class="university-bar-wrapper">
-  <div class="university-bar-container">
-    <div class="university-bar" id="universityBar">
-      <button class="university-option">Santa Clara University</button>
-      <button class="university-option">Stanford University</button>
-      <button class="university-option">Arizona State University</button>
-      <button class="university-option">UC Berkeley</button>
-      <button class="university-option">Johns Hopkins University</button>
-      <button class="university-option">Harvard University</button>
-    </div>
-    <!-- Scroll arrow -->
-    <div class="university-scroll-arrow" id="universityScrollArrow">
-      <span class="material-icons">chevron_right</span>
-    </div>
-  </div>
-</div>
+      <!-- University Bar Section -->
+      <div class="university-bar-wrapper">
+        <!-- Container to show selected university name (initially hidden) -->
+        <div class="selected-university" id="selectedUniversity" style="display: none;"></div>
 
+        <!-- Container for the scrollable university bar -->
+        <div class="university-bar-container" id="universityBarContainer">
+          <div class="university-bar" id="universityBar">
+            <button class="university-option">Santa Clara University</button>
+            <button class="university-option">Stanford University</button>
+            <button class="university-option">Arizona State University</button>
+            <button class="university-option">UC Berkeley</button>
+            <button class="university-option">Johns Hopkins University</button>
+            <button class="university-option">Harvard University</button>
+          </div>
+          <!-- Scroll arrow -->
+          <div class="university-scroll-arrow" id="universityScrollArrow">
+            <span class="material-icons">chevron_right</span>
+          </div>
+        </div>
+      </div>
 
       <!-- Second row: category icons + Filters button + scroll arrow -->
       <div class="category-bar-wrapper">
@@ -163,17 +168,17 @@
     </a>
   </div>
 
-<!-- Modal for Post Details -->
-<div class="modal" id="postModal">
-  <div class="modal-content">
-    <span class="close-modal" id="closeModal">&times;</span>
-    <h2 id="modalTitle"></h2>
-    <p class="modal-category" id="modalCategory"></p>
-    <p class="price" id="modalPrice"></p>
-    <p class="created-at" id="modalCreatedAt"></p>
+  <!-- Modal for Post Details -->
+  <div class="modal" id="postModal">
+    <div class="modal-content">
+      <span class="close-modal" id="closeModal">&times;</span>
+      <h2 id="modalTitle"></h2>
+      <p class="modal-category" id="modalCategory"></p>
+      <p class="price" id="modalPrice"></p>
+      <p class="created-at" id="modalCreatedAt"></p>
 
-    <!-- University email line -->
-    <p id="modalEmail"></p>
+      <!-- University email line -->
+      <p id="modalEmail"></p>
       <!-- Message Box -->
       <div class="message-box">
         <h3>Message</h3>
@@ -206,6 +211,7 @@
     </div>
   </div>
 
+  <!-- Link to external JS file -->
   <script src="script.js"></script>
 </body>
 </html>
