@@ -33,7 +33,7 @@ let currentPhotos = [];
 let currentPhotoIndex = 0;
 let selectedCategory = "";
 
-// Sample posts data
+// Sample posts data (unchanged)
 const posts = [
   {
     id: 1,
@@ -230,6 +230,16 @@ const modalCreatedAt = document.getElementById('modalCreatedAt');
 const menuButton = document.getElementById('menuButton');
 const dropdownMenu = document.getElementById('dropdownMenu');
 const modalEmail = document.getElementById('modalEmail');
+
+// For toggling the university bar
+const universityToggleButton = document.getElementById('universityToggleButton');
+
+// University bar elements
+const universityOptions = document.querySelectorAll('.university-option');
+const selectedUniversityEl = document.getElementById('selectedUniversity');
+const universityBarContainer = document.getElementById('universityBarContainer');
+const universityBarEl = document.getElementById('universityBar');
+const universityScrollArrowEl = document.getElementById('universityScrollArrow');
 
 // Toggle dropdown menu
 menuButton.addEventListener('click', (e) => {
@@ -470,13 +480,11 @@ categoryScrollArrow.addEventListener('click', () => {
 window.addEventListener('load', updateCategoryBarArrow);
 window.addEventListener('resize', updateCategoryBarArrow);
 
-// University selection
-const universityOptions = document.querySelectorAll('.university-option');
-const selectedUniversityEl = document.getElementById('selectedUniversity');
-const universityBarContainer = document.getElementById('universityBarContainer');
-const universityBarEl = document.getElementById('universityBar');
-const universityScrollArrowEl = document.getElementById('universityScrollArrow');
+/* ------------------------------------------------
+   UNIVERSITY BAR & SELECTED UNIVERSITY LOGIC
+-------------------------------------------------- */
 
+// 1) User picks a university from the bar
 universityOptions.forEach(option => {
   option.addEventListener('click', () => {
     // Remove .active from all
@@ -484,29 +492,30 @@ universityOptions.forEach(option => {
     // Mark the clicked one as active
     option.classList.add('active');
 
-    // Get the name of the clicked university
-    const chosenUniversityName = option.innerText;
-
-    // Hide the bar container
+    // Hide the bar
     universityBarContainer.style.display = 'none';
 
-    // Show the chosen university in our new div
+    // Show the chosen name
+    const chosenUniversityName = option.innerText;
     selectedUniversityEl.textContent = chosenUniversityName;
-    selectedUniversityEl.style.display = 'block';
+    selectedUniversityEl.style.display = 'inline-block';
   });
 });
 
-// Allow user to click the displayed university name to bring the bar back
-selectedUniversityEl.addEventListener('click', () => {
-  // Hide the big name
-  selectedUniversityEl.style.display = 'none';
-  // Show the bar container again
-  universityBarContainer.style.display = '';
-  // Re-check arrow in case there's overflow
+// 2) Clicking "University" button toggles the bar
+universityToggleButton.addEventListener('click', () => {
+  // If bar is hidden, show it
+  if (universityBarContainer.style.display === 'none') {
+    universityBarContainer.style.display = '';
+  } else {
+    // If it's visible, hide it
+    universityBarContainer.style.display = 'none';
+  }
+  // Make sure we update the scroll arrow if needed
   updateUniversityBarArrow();
 });
 
-// University bar arrow logic
+// 3) University bar arrow logic
 function updateUniversityBarArrow() {
   if (universityBarEl.scrollWidth > universityBarEl.clientWidth) {
     universityScrollArrowEl.classList.add('show');

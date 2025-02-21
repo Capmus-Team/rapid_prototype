@@ -47,6 +47,13 @@ body {
   justify-content: space-between;
   padding: 5px 20px; /* Reduced vertical padding */
 }
+
+/* .header-left: logo + selected university name side-by-side */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
 .logo {
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
@@ -54,6 +61,14 @@ body {
   letter-spacing: 0.5px;
   color: #1A3771;
 }
+.selected-university {
+  font-size: 1rem;  /* smaller font */
+  font-weight: 500;
+  color: #555;
+  display: none;    /* hidden until user picks a university */
+}
+
+/* .header-center: search bar */
 .header-center {
   flex: 1;
   display: flex;
@@ -79,6 +94,8 @@ body {
   font-size: 1rem;
   width: 250px;
 }
+
+/* .header-right: create post link, "University" button, user menu */
 .header-right {
   display: flex;
   align-items: center;
@@ -88,6 +105,27 @@ body {
   text-decoration: none;
   color: #222;
   font-weight: 500;
+}
+
+/* University Toggle Button */
+.university-toggle-button {
+  background: #f7f7f7;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 5px 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.9rem;
+  color: #333;
+}
+.university-toggle-button:hover {
+  background: #e0e0e0;
+}
+.university-toggle-button .material-icons {
+  font-size: 18px;
+  color: #666;
 }
 
 /* User Menu */
@@ -598,6 +636,7 @@ body {
     display: none;
   }
 }
+
 
 /* University Selection Styling */
 .university-selection-wrapper {
