@@ -496,6 +496,16 @@ universityOptions.forEach(option => {
   });
 });
 
+// Allow user to click the displayed university name to bring the bar back
+selectedUniversityEl.addEventListener('click', () => {
+  // Hide the big name
+  selectedUniversityEl.style.display = 'none';
+  // Show the bar container again
+  universityBarContainer.style.display = '';
+  // Re-check arrow in case there's overflow
+  updateUniversityBarArrow();
+});
+
 // University bar arrow logic
 function updateUniversityBarArrow() {
   if (universityBarEl.scrollWidth > universityBarEl.clientWidth) {

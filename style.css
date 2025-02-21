@@ -694,10 +694,12 @@ body {
 }
 
 /* The selected university text (shown after user picks) */
+/* Added cursor pointer so user knows it's clickable */
 .selected-university {
   font-size: 1.5rem;
   font-weight: 600;
   text-align: center;
   padding: 4px 0;
   color: #1A3771;
+  cursor: pointer; /* <-- ADDED so user sees it's clickable */
 }
