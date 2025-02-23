@@ -1,3 +1,7 @@
+if (typeof window !== 'undefined') {
+  // Code that uses browser-specific APIs or variables
+}
+
 export default function Home() {
   return (
     <>
