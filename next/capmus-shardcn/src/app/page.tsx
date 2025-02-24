@@ -4,182 +4,187 @@ import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Search, School, Menu, User, Heart, ChevronRight } from 'lucide-react';
+import { 
+  Search, School, Menu, User, Heart, ChevronRight, 
+  Tag, Briefcase, GraduationCap, Users,
+  Calendar, FileText, Grid, Settings
+} from 'lucide-react';
 
-// Category data
-const categoryData = [
-  { id: 'all', label: 'All', icon: 'Apps' },
-  { id: 'housing', label: 'Housing', icon: 'Home' },
-  { id: 'for-sale', label: 'For Sale', icon: 'Tag' },
-  { id: 'jobs', label: 'Jobs', icon: 'Briefcase' },
-  { id: 'personals', label: 'Personals', icon: 'User' },
-  { id: 'campus-jobs', label: 'Campus Jobs', icon: 'GraduationCap' },
-  { id: 'community', label: 'Community', icon: 'Users' },
-  { id: 'services', label: 'Services', icon: 'Tool' },
-  { id: 'events', label: 'Events', icon: 'Calendar' },
-  { id: 'resumes', label: 'Resumes', icon: 'FileText' }
+const posts = [
+  {
+    id: 1,
+    title: "Orange Bike for Sale",
+    description: "Great condition, used for one year. Pickup on campus...",
+    price: "$100",
+    timeAgo: "5 secs",
+    category: "for-sale",
+    image: "/api/placeholder/400/300",
+    email: "@stanford.edu"
+  },
+  {
+    id: 2,
+    title: "Roommate Wanted",
+    description: "Looking for a roommate near campus. Spacious room with great...",
+    price: "$800/mo",
+    timeAgo: "1 min",
+    category: "housing",
+    image: "/api/placeholder/400/300",
+    email: "@harvard.edu"
+  },
+  {
+    id: 3,
+    title: "CS Textbook",
+    description: "Intro to Algorithms in excellent condition. No highlights or...",
+    price: "$30",
+    timeAgo: "5 mins",
+    category: "for-sale",
+    image: "/api/placeholder/400/300",
+    email: "@mit.edu"
+  },
+  {
+    id: 4,
+    title: "Guitar Lessons",
+    description: "Offering beginner guitar lessons at affordable rates. Flexible...",
+    price: "Starting at $20/hr",
+    timeAgo: "27 days",
+    category: "services",
+    image: "/api/placeholder/400/300",
+    email: "@stanford.edu"
+  }
 ];
 
-const universities = [
-  'Santa Clara University',
-  'Stanford University',
-  'Arizona State University',
-  'UC Berkeley',
-  'Johns Hopkins University',
-  'Harvard University'
+const categories = [
+  { id: 'all', label: 'All', icon: Grid, className: 'bg-blue-700 text-white' },
+  { id: 'housing', label: 'Housing', icon: Heart, className: 'bg-green-500 text-white' },
+  { id: 'for-sale', label: 'For Sale', icon: Tag, className: 'bg-orange-500 text-white' },
+  { id: 'jobs', label: 'Jobs', icon: Briefcase, className: 'bg-purple-600 text-white' },
+  { id: 'personals', label: 'Personals', icon: User, className: 'bg-pink-500 text-white' },
+  { id: 'campus-jobs', label: 'Campus Jobs', icon: School, className: 'bg-teal-600 text-white' },
+  { id: 'community', label: 'Community', icon: Users, className: 'bg-red-500 text-white' },
+  { id: 'services', label: 'Services', icon: GraduationCap, className: 'bg-brown-500 text-white' },
+  { id: 'events', label: 'Events', icon: Calendar, className: 'bg-indigo-700 text-white' },
+  { id: 'resumes', label: 'Resumes', icon: FileText, className: 'bg-gray-700 text-white' }
 ];
 
 export default function Home() {
-  const [selectedUniversity, setSelectedUniversity] = useState('');
-  const [showUniversityBar, setShowUniversityBar] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const [showDropdown, setShowDropdown] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-900 to-blue-700">
-      <div className="max-w-7xl mx-auto px-4">
-        {/* Header */}
-        <header className="fixed top-0 left-0 right-0 bg-white shadow-md z-50">
-          {/* Top Header Row */}
-          <div className="flex items-center justify-between p-4">
-            {/* Logo & University */}
-            <div className="flex items-center gap-4">
-              <h1 className="text-2xl font-bold text-blue-900">Capmus</h1>
-              {selectedUniversity && (
-                <span className="text-gray-600 font-medium">{selectedUniversity}</span>
-              )}
+    <div className="min-h-screen bg-gray-50">
+      <div className="max-w-7xl mx-auto">
+        {/* Top Bar */}
+        <div className="flex items-center justify-between px-6 h-16">
+          <h1 className="text-2xl font-bold text-[#1A3771]">Capmus</h1>
+          
+          <div className="flex-1 max-w-xl mx-8">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4" />
+              <Input 
+                className="pl-10 w-full bg-gray-50 border border-gray-200" 
+                placeholder="Search posts..." 
+              />
             </div>
+          </div>
 
-            {/* Search Bar */}
-            <div className="flex-1 max-w-xl mx-4">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                <Input 
-                  className="pl-10 w-full" 
-                  placeholder="Search posts..." 
-                />
-              </div>
-            </div>
+          <div className="flex items-center gap-4">
+            <Button>Create a post</Button>
+            <Button variant="outline" className="rounded-full">
+              <School className="h-4 w-4 mr-2" />
+              University
+            </Button>
+            <Button variant="outline" className="rounded-full">
+              <Menu className="h-4 w-4 mr-2" />
+              <User className="h-4 w-4" />
+            </Button>
+          </div>
+        </div>
 
-            {/* Right Side Actions */}
-            <div className="flex items-center gap-4">
-              <Button variant="ghost">Create a post</Button>
-              <Button 
-                variant="outline" 
-                className="flex items-center gap-2"
-                onClick={() => setShowUniversityBar(!showUniversityBar)}
+        {/* University Bar */}
+        <div className="bg-white border-y">
+          <div className="px-6 py-2 flex gap-2 overflow-x-auto">
+            {[
+              'Santa Clara University',
+              'Stanford University',
+              'Arizona State University',
+              'UC Berkeley',
+              'Johns Hopkins University',
+              'Harvard University'
+            ].map((uni) => (
+              <Button
+                key={uni}
+                variant="outline"
+                className="rounded-full whitespace-nowrap"
               >
-                <School className="w-4 h-4" />
-                University
+                {uni}
               </Button>
-              <div className="relative">
-                <Button 
-                  variant="outline"
-                  className="flex items-center gap-2"
-                  onClick={() => setShowDropdown(!showDropdown)}
-                >
-                  <Menu className="w-4 h-4" />
-                  <User className="w-4 h-4" />
-                </Button>
-                {showDropdown && (
-                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1">
-                    <a href="#" className="block px-4 py-2 hover:bg-gray-100">Sign up</a>
-                    <a href="#" className="block px-4 py-2 hover:bg-gray-100">Login</a>
-                    <a href="#" className="block px-4 py-2 hover:bg-gray-100">Help Center</a>
-                  </div>
-                )}
-              </div>
-            </div>
+            ))}
           </div>
+        </div>
 
-          {/* University Bar */}
-          {showUniversityBar && (
-            <div className="border-t border-gray-200 overflow-x-auto">
-              <div className="flex gap-2 p-2">
-                {universities.map((uni) => (
-                  <Button
-                    key={uni}
-                    variant={selectedUniversity === uni ? "default" : "outline"}
-                    onClick={() => setSelectedUniversity(uni)}
-                    className="whitespace-nowrap"
-                  >
-                    {uni}
-                  </Button>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Category Bar */}
-          <div className="border-t border-gray-200 bg-gray-50 p-2">
-            <div className="flex items-center gap-2 overflow-x-auto">
-              {categoryData.map((category) => (
-                <Button
-                  key={category.id}
-                  variant={selectedCategory === category.id ? "default" : "outline"}
-                  onClick={() => setSelectedCategory(category.id)}
-                  className="flex flex-col items-center gap-1 py-2"
-                >
-                  <span className="text-lg">{category.icon}</span>
-                  <span className="text-xs">{category.label}</span>
-                </Button>
-              ))}
-              <Button variant="outline" className="ml-auto flex items-center gap-2">
-                <ChevronRight className="w-4 h-4" />
-                Filters
+        {/* Category Bar */}
+        <div className="bg-white shadow">
+          <div className="px-6 flex items-center">
+            {categories.map((category) => (
+              <Button
+                key={category.id}
+                variant={selectedCategory === category.id ? "default" : "ghost"}
+                onClick={() => setSelectedCategory(category.id)}
+                className={`flex items-center gap-2 py-3 px-4 rounded-none border-b-2 
+                  ${selectedCategory === category.id 
+                    ? 'border-blue-600 text-blue-600' 
+                    : 'border-transparent'}`}
+              >
+                <category.icon className="h-4 w-4" />
+                {category.label}
               </Button>
-            </div>
+            ))}
           </div>
-        </header>
+        </div>
 
         {/* Main Content */}
-        <main className="pt-48 pb-20">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {/* Sample Post Card */}
-            <Card className="relative overflow-hidden">
-              <Button 
-                variant="ghost" 
-                size="icon" 
-                className="absolute top-2 right-2 z-10"
-              >
-                <Heart className="w-5 h-5" />
-              </Button>
-              <img 
-                src="/api/placeholder/400/300"
-                alt="Post image"
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-4">
-                <h3 className="text-lg font-semibold mb-2">Sample Post Title</h3>
-                <p className="text-sm text-gray-600 mb-4">
-                  Sample post description that goes here...
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-blue-600 font-medium">$100</span>
-                  <span className="text-sm text-gray-500">2 hours ago</span>
+        <main className="p-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {posts.map((post) => (
+              <Card key={post.id} className="overflow-hidden">
+                <div className="relative">
+                  <img 
+                    src={post.image}
+                    alt={post.title}
+                    className="w-full aspect-[4/3] object-cover"
+                  />
+                  <Button 
+                    variant="ghost" 
+                    size="icon"
+                    className="absolute top-2 right-2 bg-white/80 hover:bg-white rounded-full"
+                  >
+                    <Heart className="h-5 w-5" />
+                  </Button>
                 </div>
-              </div>
-            </Card>
+                
+                <div className="p-4">
+                  <h3 className="text-lg font-semibold text-[#1A3771] mb-2">
+                    {post.title}
+                  </h3>
+                  <div className="mb-3">
+                    <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm text-white
+                      ${categories.find(c => c.id === post.category)?.className}`}>
+                      <Tag className="h-4 w-4 mr-1" />
+                      {post.category}
+                    </span>
+                  </div>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="font-semibold text-[#1A3771]">{post.price}</span>
+                    <span className="text-sm text-gray-500">{post.timeAgo}</span>
+                  </div>
+                  <p className="text-sm text-gray-600 mb-3">
+                    {post.description}
+                  </p>
+                  <p className="text-sm font-medium text-gray-800">{post.email}</p>
+                </div>
+              </Card>
+            ))}
           </div>
         </main>
-
-        {/* Mobile Bottom Navigation */}
-        <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 md:hidden">
-          <div className="flex justify-around py-2">
-            <Button variant="ghost" className="flex flex-col items-center">
-              <Search className="w-5 h-5" />
-              <span className="text-xs mt-1">Explore</span>
-            </Button>
-            <Button variant="ghost" className="flex flex-col items-center">
-              <Heart className="w-5 h-5" />
-              <span className="text-xs mt-1">Wishlists</span>
-            </Button>
-            <Button variant="ghost" className="flex flex-col items-center">
-              <User className="w-5 h-5" />
-              <span className="text-xs mt-1">Log in</span>
-            </Button>
-          </div>
-        </nav>
       </div>
     </div>
   );
